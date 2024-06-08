@@ -29,12 +29,12 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Enter password" required>
+                            </div>
+                            <div class="">
+                                <button type="submit" class="btn btn-primary" name="submit">Login</button>
+                                <div class="float-end">
+                                    <a href="" style="text-decoration:none">Forget password?</a>
                                 </div>
-                                <div class="">
-                                    <button type="submit" class="btn btn-primary" name="submit">Login</button>
-                                    <div class="float-end">
-                                        <a href="" style="text-decoration:none">Forget password?</a>
-                                    </div>
                             </div>
                         </form>
                         <?php
@@ -49,7 +49,7 @@
                             $login->bindParam("password", $password);
                             $login->execute();
                             if ($login->rowCount() > 0) {
-                                header("Location: http://localhost/marketplace/pages/register.php");
+                                header("Location: http://localhost/server/marketplace/pages/register.php");
                             } else {
                                 echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center" role="alert">
                                     <div>

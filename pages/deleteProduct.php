@@ -5,8 +5,8 @@
     if(isset($_GET['deleteid'])){
         $id = $_GET['deleteid'];
 
-        $delete = $database->prepare("DELETE FROM products WHERE Products_id=$id");
+        $delete = $database->prepare("DELETE FROM products WHERE Product_Id=$id");
         $delete->execute();
-        header('location:products.php');
+        header('location:http://localhost/server/marketplace/pages/products.php');
     }
 ?>

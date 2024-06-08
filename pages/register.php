@@ -44,7 +44,7 @@
                     <input type="email" name="email" class="form-control" id="email" require>
                 </div>
                 <div class="col-6 col-md-4">
-                    <label for="inputUsernamr4" class="form-label">Username</label>
+                    <label for="inputUsername4" class="form-label">Username</label>
                     <input type="text" name="username" class="form-control" id="username" require>
                 </div>
                 <div class="col-6 col-md-4">
@@ -60,11 +60,11 @@
                 </div>
 
                 <div class="col-4 col-md-3">
-                    <label for="inputPhnb4" class="form-label lphone">Phone number</label>
+                    <label for="inputPhNb4" class="form-label lPhone">Phone number</label>
                     <input type="tel" name="phone" class="form-control" id="phone" require>
                 </div>
                 <div class="col-4 col-md-3">
-                    <label for="inputPhnb4" class="form-label laddress">Address</label>
+                    <label for="inputPhNb4" class="form-label lAddress">Address</label>
                     <textarea type="tel" name="address" class="form-control" id="address" require></textarea>
                 </div>
                 <div class="col-12">
@@ -83,32 +83,34 @@
 
 if(isset($_POST['submit'])){
 
-    $emailcheck = $database->prepare('SELECT email FROM customers WHERE email = :email');
-    $emailcheck->bindParam(':email',$_POST['email']);
-    $emailcheck->execute();
+    $emailCheck = $database->prepare('SELECT email FROM customers WHERE email = :email');
+    $emailCheck->bindParam(':email',$_POST['email']);
+    $emailCheck->execute();
 
-    if($emailcheck->rowCount()>0){
+    if($emailCheck->rowCount()>0){
         echo "<div class='container' style='margin-top:-7rem'><div class='alert alert-warning' role='alert'>
         A simple warning alert with <a href='#' class='alert-link'>an example link</a>. Give it a click if you like.
         </div></div>";
     }
     else{
-        $insert = $database->prepare('INSERT INTO 
-        customers(FName,LName,PhoneNumber,Email,Address)
-        VALUES(:FName,	:LName,	:PhoneNumber,:Email	,:Address)
-        ');
-        $insert->bindParam('FName',$_POST['fname']);
-        $insert->bindParam('LName',$_POST['lname']);
-        $insert->bindParam('PhoneNumber',$_POST['phone']);
-        $insert->bindParam('Email',$_POST['email']);
-        $insert->bindParam('Address',$_POST['address']);
-        $insert->execute();
-        
-        $getid = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
-        $getid->bindParam("EMAIL",$_POST['email']);
-        $getid->execute();
-        $customerId = $getid->fetch(PDO::FETCH_ASSOC);
-        $cid=$customerId["Customer_Id"];
+        if($_POST['role']==='Customer'){
+            $insert = $database->prepare('INSERT INTO 
+            customers(FName,LName,PhoneNumber,Email,Address)
+            VALUES(:FName,	:LName,	:PhoneNumber,:Email	,:Address)
+            ');
+            $insert->bindParam('FName',$_POST['fname']);
+            $insert->bindParam('LName',$_POST['lname']);
+            $insert->bindParam('PhoneNumber',$_POST['phone']);
+            $insert->bindParam('Email',$_POST['email']);
+            $insert->bindParam('Address',$_POST['address']);
+            $insert->execute();
+
+            $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
+            $getId->bindParam("EMAIL",$_POST['email']);
+            $getId->execute();
+            $customerId = $getId->fetch(PDO::FETCH_ASSOC);
+            $cid=$customerId["Customer_Id"];
+        }
         
         $insertUser = $database->prepare('INSERT INTO 
         users(Username,Password,UserType,FName,LName,Email,Customer_Id)

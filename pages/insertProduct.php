@@ -1,7 +1,7 @@
 <?php
     $username = 'root';
     $password = '';
-    $database = new PDO('mysql:host=localhost;dbname=clinicdb;',$username,$password);
+    $database = new PDO('mysql:host=localhost;dbname=bishop;',$username,$password);
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -27,14 +27,14 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="productDescription" class="form-label fw-semibold">Description:</label>
-                        <textarea type="text" class="form-control" id="productDescription" name="productDescription" required></textarea>
+                        <textarea type="text" class="form-control" id="productDescription" name="productDescription"
+                            required></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="qtyInStock" class="form-label fw-semibold">Quantity In Stock:</label>
-                        <input type="text" class="form-control" id="qtyInStock" name="qtyInStock"
-                            required>
+                        <input type="text" class="form-control" id="qtyInStock" name="qtyInStock" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="productPrice" class="form-label fw-semibold">Price:</label>
@@ -48,7 +48,19 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="productCategory" class="form-label fw-semibold">Category:</label>
-                        <input type="tel" class="form-control" id="productCategory" name="productCategory" required>
+                        <select name="Categories" id="Categories">
+                            <?php
+                            $getCategoryName = $database->prepare("SELECT Category_Name FROM categories");
+                            $getCategoryName->execute();
+                            if($getCategoryName->rowCount()>0){
+                                foreach ($getCategoryName as $CatName) {
+                                    echo "<option value='".$CatName['Category_Name']."'>". $CatName['Category_Name'] ."</option>";
+                                }
+                            }else{
+                                echo "<option value='NotFound' selected>Not Found</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -59,18 +71,21 @@
             <?php
 
             if (isset($_POST['submit'])) {
-
+                $getCategoryId = $database->prepare('SELECT Category_Id FROM categories WHERE Category_Name = :CatName');
+                $getCategoryId->bindParam("CatName",$_POST['Categories']);
+                $getCategoryId->execute();
+                $category_id = $getCategoryId->fetchColumn();
+                
                 $insert = $database->prepare("INSERT INTO products (Name, Description, Qty_In_Stock, Price, Image, Category_Id) 
                 VALUES(:Name, :Description, :Qty_In_Stock,:Price, :Image, :Category_Id)");
-
                 $insert->bindParam('Name', $_POST['productName']);
                 $insert->bindParam('Description', $_POST['productDescription']);
                 $insert->bindParam('Price', $_POST['productPrice']);
-                $insert->bindParam('Image, :', $_POST['productImage']);
+                $insert->bindParam('Image', $_POST['productImage']);
                 $insert->bindParam('Qty_In_Stock', $_POST['qtyInStock']);
-                $insert->bindParam('Category_Id', $_POST['productCategory']);
+                $insert->bindParam('Category_Id',$category_id);
                 $insert->execute();
-                header('location:products.php');
+                header("Location: http://localhost/server/marketplace/pages/products.php");
             }
             ?>
         </form>
