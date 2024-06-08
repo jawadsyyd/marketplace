@@ -6,14 +6,14 @@ var phone = document.getElementById('phone'),
 
 role.addEventListener('change', () => {
   if (role.value === 'Costumer') {
-    phone.classList.remove('d-none');
-    address.classList.remove('d-none');
-    labelPhone.classList.remove('d-none');
-    lAddress.classList.remove('d-none');
+    document.getElementById('phone').classList.toggle('d-none');
+    document.getElementById('address').classList.toggle('d-none');
+    document.querySelector('.lPhone').classList.toggle('d-none');
+    document.querySelector('.lAddress').classList.toggle('d-none');
   } else {
-    phone.classList.add('d-none');
-    address.classList.add('d-none');
-    labelPhone.classList.add('d-none');
-    lAddress.classList.add('d-none');
+    document.getElementById('phone').classList.toggle('d-none');
+    document.getElementById('address').classList.toggle('d-none');
+    document.querySelector('.lPhone').classList.toggle('d-none');
+    document.querySelector('.lAddress').classList.toggle('d-none');
   }
 });
