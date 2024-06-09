@@ -1,3 +1,8 @@
+<?php
+    $username = 'root';
+    $password = '';
+    $database = new PDO('mysql:host=localhost;dbname=bishop;',$username,$password);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,37 +26,38 @@
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="5000">
-                <img src="https://placehold.co/600x400" class="d-block w-100 position-relative" alt="...">
-                <div class="position-absolute end-50 top-50 z-1001 flex">
+                <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
+                <div class="position-absolute end-50 top-50 z-1001">
                     <div class="row">
                         <div class="col-12 text-center">
                             <h3 class="display-6">Lorem, ipsum dolor.</h3>
-                            <h1 class="display-5">Lorem ipsum dolor sit.</h1>
-                            <button class="btn btn-dark rounded-pill text-uppercase">VIEW COLLECTION</button>
+                            <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
+                            <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW
+                                COLLECTION</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="2500">
-                <img src="https://placehold.co/600x400" class="d-block w-100 position-relative" alt="...">
-                <div class="position-absolute start-50 top-50 z-1001 flex">
+                <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
+                <div class="position-absolute end-50 top-50 z-1001 flex">
                     <div class="row">
                         <div class="col-12 text-center">
                             <h3 class="display-6">Lorem, ipsum dolor.</h3>
-                            <h1 class="display-5">Lorem ipsum dolor sit.</h1>
-                            <button class="btn btn-dark rounded-pill text-uppercase">VIEW COLLECTION</button>
+                            <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
+                            <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW COLLECTION</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://placehold.co/600x400" class="d-block w-100 position-relative" alt="...">
-                <div class="position-absolute start-50 bottom-50 z-1001 flex">
+                <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
+                <div class="position-absolute end-50 top-50 z-1001 flex">
                     <div class="row">
                         <div class="col-12 text-center">
                             <h3 class="display-6">Lorem, ipsum dolor.</h3>
-                            <h1 class="display-5">Lorem ipsum dolor sit.</h1>
-                            <button class="btn btn-dark rounded-pill text-uppercase">VIEW COLLECTION</button>
+                            <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
+                            <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW COLLECTION</button>
                         </div>
                     </div>
                 </div>
@@ -74,8 +82,8 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="32"
-                        height="32" fill="white" class="bi bi-truck" viewBox="0 0 16 16">
+                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="32" height="32" fill="black" class="bi bi-truck" viewBox="0 0 16 16">
                         <path
                             d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                     </svg></button>
@@ -83,8 +91,8 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="32"
-                        height="32" fill="white" class="bi bi-wallet2" viewBox="0 0 16 16">
+                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="32" height="32" fill="black" class="bi bi-wallet2" viewBox="0 0 16 16">
                         <path
                             d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" />
                     </svg></button>
@@ -92,8 +100,8 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="32"
-                        height="32" fill="white" class="bi bi-shield-lock" viewBox="0 0 16 16">
+                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="32" height="32" fill="black" class="bi bi-shield-lock" viewBox="0 0 16 16">
                         <path
                             d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
                         <path
@@ -103,8 +111,8 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="32"
-                        height="32" fill="white" class="bi bi-check-square" viewBox="0 0 16 16">
+                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="32" height="32" fill="black" class="bi bi-check-square" viewBox="0 0 16 16">
                         <path
                             d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                         <path
@@ -118,6 +126,109 @@
 
     <!-- END CATEGORY -->
 
+    <!-- START BANNER -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
+                <img src="https://placehold.co/558x200/white/black" alt="" class="img-fluid">
+                <div class="position-absolute start-50 bottom-0 mb-5 text-center">
+                    <h5 class="d-none d-xl-block">Lorem, ipsum dolor.</h5>
+                    <p class="d-none d-xl-block">Lorem, ipsum dolor.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
+                <img src="https://placehold.co/558x200/white/black" alt="" class="img-fluid">
+                <div class="position-absolute start-50 bottom-0 mb-5 text-center">
+                    <h5 class="d-none d-xl-block">Lorem, ipsum dolor.</h5>
+                    <p class="d-none d-xl-block">Lorem, ipsum dolor.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END BANNER -->
+
+    <!-- START Product -->
+    <div class="container d-flex justify-content-start  position-relative align-items-center">
+        <div class="row">
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link link-dark active" id="AllCategories"
+                        href="http://localhost/server/marketplace/pages/home.php">All Categories</a>
+                </li>
+                <?php
+            $getCategoriesNames = $database->prepare("SELECT Category_Name FROM categories");
+            $getCategoriesNames->execute();
+            $categoriesNames = $getCategoriesNames->fetchAll();
+            foreach ($categoriesNames as $catName) {
+                echo'<li class="nav-item" id="'.$catName['Category_Name'].'" >
+                <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/home.php/'.$catName["Category_Name"].'" aria-disabled="true">'.$catName["Category_Name"].'</a>
+            </li>';
+            }
+            ?>
+            </ul>
+        </div>
+        <div class="position-absolute end-0 d-none d-sm-none d-md-flex">
+            <button class="btn  bg-dark btn-sm rounded-pill px-3 text-center" style="color:white">Sort
+                By <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                </svg></button>
+            <button class="btn  bg-dark btn-sm rounded-pill px-3 text-center" style="color:white">Filter</button>
+        </div>
+    </div>
+    <div class="container my-5 d-flex justify-center">
+        <div class="row my-5 d-flex justify-around">
+            <?php
+            if ($_SERVER['REQUEST_URI'] == "/server/marketplace/pages/home.php") {
+                $selectAllProducts = $database->prepare("SELECT * FROM products");
+                $selectAllProducts->execute();
+                $products = $selectAllProducts->fetchAll();
+                foreach ($products as $product) {
+                    echo '<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 text-center mb-4"><div class="card" style="width: 18rem;">
+                    <img src="'.$product['Image'].'" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                    <p class="card-title">'.$product['Name'].'</p>
+                    <span class="fw-semibold">$</span><span class="fw-semibold">'.$product['Price'].'</span>
+                    </div>
+                    </div></div>';
+                }
+            }else if (preg_match("~^/server/marketplace/pages/home.php/([^/]+)$~", $_SERVER['REQUEST_URI'], $matches)) {
+                // Extract catName from the URL
+                $catName = $matches[1];
+                // Decode URL encoded characters
+                $catName = urldecode($catName);
+
+                $getCategoryId= $database->prepare("SELECT Category_Id FROM categories WHERE Category_Name=:categoryName");
+                $getCategoryId->bindParam("categoryName",$catName);
+                $getCategoryId->execute();
+                $currentCategoryId = $getCategoryId->fetchColumn();
+
+                $selectAllProducts = $database->prepare("SELECT * FROM products WHERE Category_Id = :categoryId");
+                $selectAllProducts->bindParam('categoryId',$currentCategoryId);
+                $selectAllProducts->execute();
+                $products = $selectAllProducts->fetchAll();
+
+                foreach ($products as $product) {
+                    echo '<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 text-center mb-4"><div class="card" style="width: 18rem;">
+                    <img src="'.$product['Image'].'" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                    <p class="card-title">'.$product['Name'].'</p>
+                    <span class="fw-semibold">$</span><span class="fw-semibold">'.$product['Price'].'</span>
+                    </div>
+                    </div></div>';
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <!-- END Product -->
+    <?php
+     include("./footer.php");
+     ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
     <script src="../js/bootstrap.js"></script>
 </body>
 
