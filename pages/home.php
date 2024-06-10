@@ -150,22 +150,22 @@
     <!-- START Product -->
     <div class="container d-flex justify-content-start  position-relative align-items-center">
         <div class="row">
-            <ul class="nav nav-underline">
-                <li class="nav-item">
-                    <a class="nav-link link-dark active" id="AllCategories"
-                        href="http://localhost/server/marketplace/pages/home.php">All Categories</a>
-                </li>
-                <?php
-            $getCategoriesNames = $database->prepare("SELECT Category_Name FROM categories");
-            $getCategoriesNames->execute();
-            $categoriesNames = $getCategoriesNames->fetchAll();
-            foreach ($categoriesNames as $catName) {
-                echo'<li class="nav-item" id="'.$catName['Category_Name'].'" >
-                <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/home.php/'.$catName["Category_Name"].'" aria-disabled="true">'.$catName["Category_Name"].'</a>
-            </li>';
-            }
-            ?>
-            </ul>
+                <ul class="nav nav-underline">
+                        <li class="nav-item">
+                            <a class="nav-link link-dark active" id="AllCategories"
+                                href="http://localhost/server/marketplace/pages/home.php">All Categories</a>
+                        </li>
+                    <?php
+                $getCategoriesNames = $database->prepare("SELECT Category_Name FROM categories");
+                $getCategoriesNames->execute();
+                $categoriesNames = $getCategoriesNames->fetchAll();
+                foreach ($categoriesNames as $catName) {
+                    echo'<li class="nav-item" id="'.$catName['Category_Name'].'" >
+                    <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/home.php/'.$catName["Category_Name"].'" aria-disabled="true">'.$catName["Category_Name"].'</a>
+                </li>';
+                }
+                ?>
+                </ul>
         </div>
         <div class="position-absolute end-0 d-none d-sm-none d-md-flex">
             <button class="btn  bg-dark btn-sm rounded-pill px-3 text-center" style="color:white">Sort
@@ -181,17 +181,33 @@
         <div class="row my-5 d-flex justify-around">
             <?php
             if ($_SERVER['REQUEST_URI'] == "/server/marketplace/pages/home.php") {
-                $selectAllProducts = $database->prepare("SELECT * FROM products");
+                $selectAllProducts = $database->prepare("SELECT * FROM products ORDER BY Category_Id ASC");
                 $selectAllProducts->execute();
                 $products = $selectAllProducts->fetchAll();
                 foreach ($products as $product) {
-                    echo '<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 text-center mb-4"><div class="card" style="width: 18rem;">
-                    <img src="'.$product['Image'].'" class="card-img-top img-fluid" alt="...">
-                    <div class="card-body">
-                    <p class="card-title">'.$product['Name'].'</p>
-                    <span class="fw-semibold">$</span><span class="fw-semibold">'.$product['Price'].'</span>
+                    $name = $product["Name"];
+                    $description =  $product["Description"];
+                    $price = $product["Price"];
+                    $image = $product["Image"];
+                    echo "<div class='col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 me-5 mb-4'><div class='card' style='width: 18rem; height: 400px;'>
+                    <img src='../products_images/$image' class='card-img-top img-fluid' alt='...' style='width: 100%; height: 200px; object-fit:contain;'>
+                    <div class='card-body'>
+                    <h5 class='card-title'>$name</h5>
+                    <p>$description</p>
+                    <div class='row pt-4'>
+                        <div class='col-8 pt-1'>
+                            <span class='fw-semibold'>$</span><span class='fw-semibold'>$price</span>
+                        </div>
+                        <div class='col-4'>
+                            <button class='btn btn-outline-secondary'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-cart3'
+                            viewBox='0 0 16 16'>
+                            <path
+                                d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2' />
+                            </svg></button>
+                        </div>
                     </div>
-                    </div></div>';
+                    </div>
+                    </div></div>";
                 }
             }else if (preg_match("~^/server/marketplace/pages/home.php/([^/]+)$~", $_SERVER['REQUEST_URI'], $matches)) {
                 // Extract catName from the URL
@@ -204,17 +220,29 @@
                 $getCategoryId->execute();
                 $currentCategoryId = $getCategoryId->fetchColumn();
 
-                $selectAllProducts = $database->prepare("SELECT * FROM products WHERE Category_Id = :categoryId");
+                $selectAllProducts = $database->prepare("SELECT * FROM products WHERE Category_Id = :categoryId ORDER BY Name ASC");
                 $selectAllProducts->bindParam('categoryId',$currentCategoryId);
                 $selectAllProducts->execute();
                 $products = $selectAllProducts->fetchAll();
 
                 foreach ($products as $product) {
-                    echo '<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 text-center mb-4"><div class="card" style="width: 18rem;">
-                    <img src="'.$product['Image'].'" class="card-img-top img-fluid" alt="...">
+                    echo '<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 me-5 mb-4"><div class="card" style="width: 18rem; height: 400px;">
+                    <img src="'.$product['Image'].'" class="card-img-top img-fluid" alt="..." style="width: 100%; height: 200px; object-fit:contain;">
                     <div class="card-body">
-                    <p class="card-title">'.$product['Name'].'</p>
+                    <h5 class="card-title">'.$product['Name'].'</h5>
+                    <p>' .$product['Description'].'</p>
+                    <div class="row pt-4">
+                    <div class="col-8">
                     <span class="fw-semibold">$</span><span class="fw-semibold">'.$product['Price'].'</span>
+                    </div>
+                    <div class="col-4">
+                            <button class="btn btn-outline-secondary" style="justify-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart3"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                            </svg></button>
+                        </div>
+                    </div>
                     </div>
                     </div></div>';
                 }

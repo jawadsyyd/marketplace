@@ -18,7 +18,7 @@
 <body class="my-5 mx-5">
     <div class="container-fluid border" style="border-radius: 10px; background-color: rgb(188, 227, 226);">
         <h1 class="mt-3 text-center">Add Product</h1>
-        <form id="doctorForm" method="POST">
+        <form id="doctorForm" method="POST" enctype="multipart/form-data">
             <div class="container mt-4">
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -44,11 +44,11 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="productImage" class="form-label fw-semibold">Image:</label>
-                        <input type="text" class="form-control" id="productImage" name="productImage" required>
+                        <input type="file" class="form-control" id="productImage" name="productImage" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="productCategory" class="form-label fw-semibold">Category:</label>
-                        <select name="Categories" id="Categories">
+                        <select name="Categories" id="Categories" class="form-select">
                             <?php
                             $getCategoryName = $database->prepare("SELECT Category_Name FROM categories");
                             $getCategoryName->execute();
@@ -71,6 +71,12 @@
             <?php
 
             if (isset($_POST['submit'])) {
+
+                $image = $_FILES['productImage']['name'];
+                $temporary_image = $_FILES['productImage']['tmp_name'];
+
+                move_uploaded_file($temporary_image, "../products_images/$image");
+
                 $getCategoryId = $database->prepare('SELECT Category_Id FROM categories WHERE Category_Name = :CatName');
                 $getCategoryId->bindParam("CatName",$_POST['Categories']);
                 $getCategoryId->execute();
@@ -81,7 +87,7 @@
                 $insert->bindParam('Name', $_POST['productName']);
                 $insert->bindParam('Description', $_POST['productDescription']);
                 $insert->bindParam('Price', $_POST['productPrice']);
-                $insert->bindParam('Image', $_POST['productImage']);
+                $insert->bindParam('Image', $image);
                 $insert->bindParam('Qty_In_Stock', $_POST['qtyInStock']);
                 $insert->bindParam('Category_Id',$category_id);
                 $insert->execute();
