@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container-fluid my-3 pt-5 p-3 bg-dark-subtle" style="background-color: rgb(188, 227, 226);">
+    <div class="container-fluid mt-3 pt-5 p-3 bg-dark-subtle" style="background-color: rgb(188, 227, 226);" id="footer">
         <div class="row d-flex  align-items-center justify-content-around">
             <div class="col-3 align-items-center justify-content-around"><a class="navbar-brand" href="#">
                     <h1>BiShop</h1>
@@ -74,7 +74,7 @@
         </div>
         <hr>
         <div class="row mt-2">
-            <div class="col-12 text-center" >
+            <div class="col-12 text-center">
                 <p>All rights reserved - Designed by Bilal & Jawad -2024</p>
             </div>
         </div>

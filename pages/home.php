@@ -82,7 +82,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                <button class="btn rounded-circle bg-dark-subtle mb-3 p-3"><svg xmlns="http://www.w3.org/2000/svg"
                         width="32" height="32" fill="black" class="bi bi-truck" viewBox="0 0 16 16">
                         <path
                             d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
@@ -91,7 +91,7 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                <button class="btn rounded-circle bg-dark-subtle mb-3 p-3"><svg xmlns="http://www.w3.org/2000/svg"
                         width="32" height="32" fill="black" class="bi bi-wallet2" viewBox="0 0 16 16">
                         <path
                             d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" />
@@ -100,7 +100,7 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                <button class="btn rounded-circle bg-dark-subtle mb-3 p-3"><svg xmlns="http://www.w3.org/2000/svg"
                         width="32" height="32" fill="black" class="bi bi-shield-lock" viewBox="0 0 16 16">
                         <path
                             d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
@@ -111,7 +111,7 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
-                <button class="btn rounded-circle bg-dark-subtle mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                <button class="btn rounded-circle bg-dark-subtle mb-3 p-3"><svg xmlns="http://www.w3.org/2000/svg"
                         width="32" height="32" fill="black" class="bi bi-check-square" viewBox="0 0 16 16">
                         <path
                             d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
@@ -150,12 +150,12 @@
     <!-- START Product -->
     <div class="container d-flex justify-content-start  position-relative align-items-center">
         <div class="row">
-                <ul class="nav nav-underline">
-                        <li class="nav-item">
-                            <a class="nav-link link-dark active" id="AllCategories"
-                                href="http://localhost/server/marketplace/pages/home.php">All Categories</a>
-                        </li>
-                    <?php
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link link-dark active" id="AllCategories"
+                        href="http://localhost/server/marketplace/pages/home.php">All Categories</a>
+                </li>
+                <?php
                 $getCategoriesNames = $database->prepare("SELECT Category_Name FROM categories");
                 $getCategoriesNames->execute();
                 $categoriesNames = $getCategoriesNames->fetchAll();
@@ -165,7 +165,7 @@
                 </li>';
                 }
                 ?>
-                </ul>
+            </ul>
         </div>
         <div class="position-absolute end-0 d-none d-sm-none d-md-flex">
             <button class="btn  bg-dark btn-sm rounded-pill px-3 text-center" style="color:white">Sort
@@ -227,7 +227,7 @@
 
                 foreach ($products as $product) {
                     echo '<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12 me-5 mb-4"><div class="card" style="width: 18rem; height: 400px;">
-                    <img src="'.$product['Image'].'" class="card-img-top img-fluid" alt="..." style="width: 100%; height: 200px; object-fit:contain;">
+                    <img src="../../products_images/'.$product['Image'].'" class="card-img-top img-fluid" alt="..." style="width: 100%; height: 200px; object-fit:contain;">
                     <div class="card-body">
                     <h5 class="card-title">'.$product['Name'].'</h5>
                     <p>' .$product['Description'].'</p>

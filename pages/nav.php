@@ -32,7 +32,7 @@
                     <a class="nav-link link-dark" href="#AllCategories">Shop</a>
                 </li>
                 <li class="nav-item ms-xl-5">
-                    <a class="nav-link link-dark" href="#">Contact</a>
+                    <a class="nav-link link-dark" href="#footer">Contact</a>
                 </li>
             </ul>
             <form class="d-none d-xl-flex align-items-xl-center" role="search">

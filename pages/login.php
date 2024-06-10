@@ -1,6 +1,9 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<!DOCTYPE html>
+<?php
+    $username = 'root';
+    $password = '';
+    $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +11,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -19,6 +24,7 @@
                         <h3>Log in</h3>
                     </div>
                     <div class="card-body">
+                        <!-- START FORM -->
                         <form action="login.php" method="post">
                             <div class="form-group mb-3">
                                 <label for="username" class="form-label">Username</label>
@@ -37,10 +43,8 @@
                                 </div>
                             </div>
                         </form>
+                        <!-- END FORM -->
                         <?php
-                        $username = 'root';
-                        $password = '';
-                        $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
                         if (isset($_POST['submit'])) {
                             $username = $_POST['username'];
                             $password = $_POST['password'];
@@ -49,7 +53,7 @@
                             $login->bindParam("password", $password);
                             $login->execute();
                             if ($login->rowCount() > 0) {
-                                header("Location: http://localhost/server/marketplace/pages/register.php");
+                                header("Location: http://localhost/server/marketplace/pages/home.php");
                             } else {
                                 echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center" role="alert">
                                     <div>

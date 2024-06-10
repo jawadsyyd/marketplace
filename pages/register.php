@@ -33,27 +33,27 @@
             <form class="row g-3" method="POST">
                 <div class="col-6 col-md-3">
                     <label for="inputFname4" class="form-label">First name</label>
-                    <input type="text" name="fname" class="form-control" id="fname" require>
+                    <input type="text" name="fname" class="form-control" id="fname" required>
                 </div>
                 <div class="col-6 col-md-3">
                     <label for="inputLname4" class="form-label">Last name</label>
-                    <input type="text" name="lname" class="form-control" id="lname" require>
+                    <input type="text" name="lname" class="form-control" id="lname" required>
                 </div>
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" require>
+                    <input type="email" name="email" class="form-control" id="email" required>
                 </div>
                 <div class="col-6 col-md-4">
                     <label for="inputUsername4" class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" require>
+                    <input type="text" name="username" class="form-control" id="username" required>
                 </div>
                 <div class="col-6 col-md-4">
                     <label for="inputPassword4" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" require>
+                    <input type="password" name="password" class="form-control" id="password" required>
                 </div>
                 <div class="col-4 col-md-4">
                     <label for="inputRole" class="form-label">Role</label>
-                    <select id="role" name="role" class="form-select" require>
+                    <select id="role" name="role" class="form-select" required>
                         <option selected value="Customer">Customer</option>
                         <option value="Admin">Admin</option>
                     </select>
@@ -61,11 +61,11 @@
 
                 <div class="col-4 col-md-3">
                     <label for="inputPhNb4" class="form-label lPhone">Phone number</label>
-                    <input type="tel" name="phone" class="form-control" id="phone" require>
+                    <input type="tel" name="phone" class="form-control" id="phone" required>
                 </div>
                 <div class="col-4 col-md-3">
                     <label for="inputPhNb4" class="form-label lAddress">Address</label>
-                    <textarea type="tel" name="address" class="form-control" id="address" require></textarea>
+                    <textarea type="tel" name="address" class="form-control" id="address" required></textarea>
                 </div>
                 <div class="col-12">
                     <button type="submit" name="submit" class="btn btn-dark px-3">Sign in</button>
@@ -83,16 +83,11 @@
 
 if(isset($_POST['submit'])){
 
-    $emailCheck = $database->prepare('SELECT email FROM customers WHERE email = :email');
+    $emailCheck = $database->prepare('SELECT Email FROM users WHERE Email = :email');
     $emailCheck->bindParam(':email',$_POST['email']);
     $emailCheck->execute();
-
-    if($emailCheck->rowCount()>0){
-        echo "<div class='container' style='margin-top:-7rem'><div class='alert alert-warning' role='alert'>
-        A simple warning alert with <a href='#' class='alert-link'>an example link</a>. Give it a click if you like.
-        </div></div>";
-    }
-    else{
+    
+    if($emailCheck->rowCount()===0){
         if($_POST['role']==='Customer'){
             $insert = $database->prepare('INSERT INTO 
             customers(FName,LName,PhoneNumber,Email,Address)
@@ -104,14 +99,13 @@ if(isset($_POST['submit'])){
             $insert->bindParam('Email',$_POST['email']);
             $insert->bindParam('Address',$_POST['address']);
             $insert->execute();
-
             $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
             $getId->bindParam("EMAIL",$_POST['email']);
             $getId->execute();
             $customerId = $getId->fetch(PDO::FETCH_ASSOC);
             $cid=$customerId["Customer_Id"];
         }
-        
+
         $insertUser = $database->prepare('INSERT INTO 
         users(Username,Password,UserType,FName,LName,Email,Customer_Id)
         VALUES(:username,:password,:role,:fname,:lname,:email,:customerId)
@@ -124,9 +118,16 @@ if(isset($_POST['submit'])){
         $insertUser->bindParam('email',$_POST['email']);
         $insertUser->bindParam('customerId',$cid);
         $insertUser->execute();
-        echo "<div class='container' style='margin-top:-5rem'><div class='alert alert-success' role='alert'>
-        A simple success alert—check it out!
-        </div></div>";
+        header("Location: http://localhost/server/marketplace/pages/home.php");
+        exit;
+
+    }else{
+        echo "<div class='container' style='margin-top: -7rem;'>
+        <div class='alert alert-warning' role='alert'>
+            Email is already in use. Please choose a different one.
+        </div>
+      </div>";
     }
+    
 }
 ?>
