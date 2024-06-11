@@ -7,45 +7,25 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Category</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .add-category-form {
-      background-color: rgb(188, 227, 226);
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 400px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body>
-  <div class="add-category-form">
-    <h1 class="text-center">Add Category</h1>
-    <form method="POST">
-      <div class="row">
-        <div class="col-12 mb-3">
-          <label for="categoryName" class="form-label fw-semibold">Name:</label>
-          <input type="text" class="form-control" id="categoryName" name="categoryName" required>
-        </div>
-      </div>
+<body class="my-5 mx-5">
+    <div class="container-fluid border" style="border-radius: 10px; background-color: rgb(188, 227, 226);">
+        <h1 class="my-3 text-center">Add Category</h1>
+        <form id="doctorForm" method="POST" enctype="multipart/form-data" class="text-center">
+            <input type="text" class="form-control my-3" name="categoryName" id="" placeholder="Enter A Category Name"
+                required>
+            <button type="submit" class="btn bg-light px-5 mb-3" name="submit">Add</button>
+        </form>
+    </div>
 
-      <div class="text-center">
-        <button type="submit" name="submit" class="btn btn-primary" id="submit">Add Category</button>
-      </div>
-
-      <?php
+    <?php
       if (isset($_POST['submit'])) {
         $categoryName = htmlspecialchars($_POST['categoryName']);
 
@@ -65,8 +45,6 @@
         }
       }
       ?>
-    </form>
-  </div>
 </body>
 
 </html>

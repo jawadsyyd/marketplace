@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="container mt-5 py-5">
+    <div class="container mt-5 py-3">
         <div class="row d-flex justify-content-center">
             <div class="col-md-4">
                 <div class="card shadow">
@@ -54,10 +54,11 @@
                             $login->execute();
                             if ($login->rowCount() > 0) {
                                 header("Location: http://localhost/server/marketplace/pages/home.php");
+                                exit;
                             } else {
-                                echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center" role="alert">
+                                echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
                                     <div>
-                                    Wrong email or password.Try again or click \'Forget password\' to reset it.
+                                    Wrong username or password.Try again or click \'Forget password\' to reset it.
                                     </div>
                                 </div></div>';
                             }

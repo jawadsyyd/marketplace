@@ -11,13 +11,14 @@
 
 <body>
     <div class="container-fluid mt-3 pt-5 p-3 bg-dark-subtle" style="background-color: rgb(188, 227, 226);" id="footer">
-        <div class="row d-flex  align-items-center justify-content-around">
-            <div class="col-3 align-items-center justify-content-around"><a class="navbar-brand" href="#">
+        <div class="row d-block d-md-flex  align-items-center justify-content-around">
+            <div class="col-12 col-md-3 d-flex d-sm-block align-items-center justify-content-center text-center"><a
+                    class="navbar-brand" href="#">
                     <h1>BiShop</h1>
                 </a> <br>
-                <p class="">Lorem ipsum dolor Lorem, ipsum dolor.</p>
+                <p class="d-none d-sm-flex">Lorem ipsum dolor Lorem, ipsum dolor.</p>
             </div>
-            <div class="col-3 d-flex  align-items-center justify-content-around">
+            <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Order History</a>
@@ -26,14 +27,14 @@
                         <a class="nav-link" href="#">My Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="#footer">Contact Us</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-3 d-flex  align-items-center justify-content-around">
+            <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Shop</a>
+                        <a class="nav-link active" aria-current="page" href="#AllCategories">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Shopping Cart</a>
@@ -43,7 +44,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-3 d-flex  align-items-center justify-content-around">
+            <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">
                     <li class="nav-item d-flex align-items-center justify-content-around">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

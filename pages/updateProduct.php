@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
                     <div class="col-md-6 mb-3">
                         <label for="productCategory" class="form-label fw-semibold">Category:</label>
                         <select name="Categories" id="Categories" class="form-select">
-                        <option value="<?php echo $category_id?>"><?php echo $category_name?></option>
+                            <option value="<?php echo $category_id?>"><?php echo $category_name?></option>
                             <?php
                             $select_all_category = "SELECT * FROM categories";
                             $result_all_category = mysqli_query($conn, $select_all_category);
@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mb-3">
                 <button type="submit" name="submit" class="btn btn-primary" id="update">Update Product</button>
             </div>
         </form>

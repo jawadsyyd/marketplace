@@ -24,9 +24,9 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
             <h2>Categories</h2>
         </div>
         <div class="col-4 col-md-2 position-relative">
-            <button type="button" class="btn btn-primary position-absolute end-0" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                Add
+            <button type="button" class="btn btn-primary position-absolute end-0">
+                <a href="http://localhost/server/marketplace/pages/insertCategory.php" class="link-light"
+                    style="text-decoration: none;">Add</a>
             </button>
         </div>
     </div>

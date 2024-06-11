@@ -1,14 +1,17 @@
-const quantityButtons = document.querySelectorAll('.quantity-button');
-const quantityInput = document.querySelector('.quantity-input');
+const quantity_input = document.querySelectorAll('.quantity-input');
+const increase = document.querySelectorAll('.increase');
+const decrease = document.querySelectorAll('.decrease');
 
-quantityButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    let quantity = parseInt(quantityInput.value);
-    if (button.classList.contains('decrease') && quantity > 1) {
-      quantity--;
-    } else if (button.classList.contains('increase')) {
-      quantity++;
-    }
-    quantityInput.value = quantity;
+for (let i = 0; i < quantity_input.length; i++) {
+  increase[i].addEventListener('click', () => {
+    let currentValue = parseInt(quantity_input[i].value);
+    quantity_input[i].value = currentValue + 1;
   });
-});
+
+  decrease[i].addEventListener('click', () => {
+    let currentValue = parseInt(quantity_input[i].value);
+    if (currentValue > 0) {
+      quantity_input[i].value = currentValue - 1;
+    }
+  });
+}
