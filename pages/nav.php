@@ -56,7 +56,9 @@
                                     <li><a class="dropdown-item"
                                             href="http://localhost/server/marketplace/pages/categories.php">Categories</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Promotions</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="http://localhost/server/marketplace/pages/promotions.php">Promotions</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
