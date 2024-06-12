@@ -17,7 +17,6 @@ $start_date = $row['Start_Date'];
 $end_Date = $row['End_Date'];
 $discountType= $row['Discount_Type'];
 $discountValue = $row['Discount_Value'];
-$pId = $row['Product_Id'];
 
 if (isset($_POST['submit'])) {
 
@@ -26,8 +25,7 @@ if (isset($_POST['submit'])) {
                 Start_Date =:Start_Date,
                 End_Date =:End_Date,
                 Discount_Type =:Discount_Type,
-                Discount_Value =:Discount_Value,
-                Product_Id =:Product_Id
+                Discount_Value =:Discount_Value
                 WHERE Promotion_Id=$id");
 
     $update->bindParam("Name",$_POST['Name']);
@@ -35,7 +33,6 @@ if (isset($_POST['submit'])) {
     $update->bindParam("End_Date",$_POST['End_Date']);
     $update->bindParam("Discount_Type",$_POST['Discount_Type']);
     $update->bindParam("Discount_Value",$_POST['Discount_Value']);
-    $update->bindParam("Product_Id",$_POST['Product_Id']);
     if ($update->execute()) {
         echo '<div class="alert alert-success" role="alert">
                             A simple success alert—check it out!
@@ -71,28 +68,24 @@ if (isset($_POST['submit'])) {
                             value="<?php echo $name; ?>" required>
                     </div>
                     <div class="col-md-6 mb-3">
+                        <label for="productPrice" class="form-label fw-semibold">Discount Type:</label>
+                        <input type="text" name="Discount_Type" class="form-control" value="<?php echo $discountType?>" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
                         <label for="productDescription" class="form-label fw-semibold">Start date:</label>
-                        <input type="date" name="Start_Date" id="" value="<?php echo $start_date?>" required>
+                        <input type="date" name="Start_Date" class="form-control" value="<?php echo $start_date?>" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="productImage" class="form-label fw-semibold">discount Value:</label>
+                        <input type="text" name="Discount_Value" class="form-control" value="<?php echo $discountValue?>" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="qtyInStock" class="form-label fw-semibold">End Date:</label>
-                        <input type="date" name="End_Date" id="" value="<?php echo $end_Date?>" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="productPrice" class="form-label fw-semibold">Discount Type:</label>
-                        <input type="text" name="Discount_Type" id="" value="<?php echo $discountType?>" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="productImage" class="form-label fw-semibold">discount Value:</label>
-                        <input type="text" name="Discount_Value" id="" value="<?php echo $discountValue?>" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="productCategory" class="form-label fw-semibold">Product Id:</label>
-                        <input type="text" name="Product_Id" id="" value="<?php echo $pId?>" required>
+                        <input type="date" name="End_Date" class="form-control" value="<?php echo $end_Date?>" required>
                     </div>
                 </div>
             </div>

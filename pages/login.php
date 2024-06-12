@@ -45,6 +45,7 @@
                         </form>
                         <!-- END FORM -->
                         <?php
+                        session_start();
                         if (isset($_POST['submit'])) {
                             $username = $_POST['username'];
                             $password = $_POST['password'];
@@ -53,8 +54,9 @@
                             $login->bindParam("password", $password);
                             $login->execute();
                             if ($login->rowCount() > 0) {
+                                $user = $login->fetch(PDO::FETCH_ASSOC);
+                                $_SESSION['user_type'] = $user['UserType'];
                                 header("Location: http://localhost/server/marketplace/pages/home.php");
-                                exit;
                             } else {
                                 echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
                                     <div>

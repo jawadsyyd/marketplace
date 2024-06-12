@@ -38,7 +38,6 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
                 <th>End Date</th>
                 <th>Discount Type</th>
                 <th>Discount Value</th>
-                <th>Product Id</th>
                 <th>Operation</th>
             </tr>
         </thead>
@@ -55,14 +54,13 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
         echo "<td>" . $promotion['End_Date'] . "</td>";
         echo "<td>" . $promotion['Discount_Type'] . "</td>";
         echo "<td>" . $promotion['Discount_Value'] . "</td>";
-        echo "<td>" . $promotion['Product_Id'] . "</td>";
         echo "<td><button class='btn update-btn btn-warning btn-sm' name='update'><a href='http://localhost/server/marketplace/pages/updatePromotion.php?updateid=" . $promotion['Promotion_Id'] . "'' class='text-dark' style='text-decoration: none;'><i class='bi bi-pencil-square' style='color:white;'></i></a></button> ";
         echo " <button class='btn delete-btn btn-danger btn-sm' name='delete'><a href='http://localhost/server/marketplace/pages/deletePromotion.php?deleteid=" . $promotion['Promotion_Id'] . "' class='text-dark' style='text-decoration: none;'><i class='bi bi-trash'></i></a></button></form></td>";
         echo "</tr>";
         echo "</tbody>";
       }
     } else {
-      echo "<tr><td colspan='8'>No doctors found</td></tr>";
+      echo "<tr><td colspan='8'>No Promotions found</td></tr>";
     }
     ?>
     </table>

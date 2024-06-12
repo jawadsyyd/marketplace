@@ -16,6 +16,10 @@
 </head>
 
 <body>
+    <?php
+        session_start();
+        $is_admin = ($_SESSION['user_type'] === 'Admin');
+    ?>
     <nav class="navbar navbar-expand-lg bg-white-tertiary py-4">
         <div class="container">
             <img src="https://placehold.co/600x400/black/white" class="img-fluid" alt="..." width="96" height="88">
@@ -43,25 +47,30 @@
                             <a class="nav-link link-dark" href="#">Cart</a>
                         </li>
                         <!-- DROPDOWN -->
-                        <li class="nav-item ms-xl-5">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Pages
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"
-                                            href="http://localhost/server/marketplace/pages/products.php">Products</a>
-                                    </li>
-                                    <li><a class="dropdown-item"
-                                            href="http://localhost/server/marketplace/pages/categories.php">Categories</a>
-                                    </li>
-                                    <li><a class="dropdown-item"
-                                            href="http://localhost/server/marketplace/pages/promotions.php">Promotions</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        <?php if ($is_admin): ?>
+                            <li class="nav-item ms-xl-5">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Pages
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                                href="http://localhost/server/marketplace/pages/products.php">Products</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                                href="http://localhost/server/marketplace/pages/categories.php">Categories</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                                href="http://localhost/server/marketplace/pages/promotions.php">Promotions</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                                href="http://localhost/server/marketplace/pages/selectProducts.php">Promotion Details</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php endif; ?>
                         <!-- DROPDOWN -->
                         <li class="nav-item ms-xl-5">
                             <a class="nav-link link-dark" href="#footer">Contact</a>
