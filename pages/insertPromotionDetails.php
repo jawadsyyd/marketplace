@@ -10,7 +10,7 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promotion Details</title>
+    <title>Add Promotion Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -26,8 +26,9 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
                         <select name="Promotions" id="Promotions" class="form-select">
                             <option value="">Select A Promotion</option>
                             <?php
-                            $getPromotionName = $database->prepare("SELECT Name FROM Promotions");
+                            $getPromotionName = $database->prepare("SELECT * FROM Promotions");
                             $getPromotionName->execute();
+                            print_r($getPromotionName);
                             if ($getPromotionName->rowCount() > 0) {
                                 foreach ($getPromotionName as $promName) {
                                     echo "<option value='" . $promName['Promotion_Id'] . "'>" . $promName['Name'] . "</option>";
@@ -91,7 +92,7 @@ if (isset($_POST['submit'])) {
             $insertPromotionProduct->execute();
         }
 
-        echo "<p class='text-center text-success'>Products linked to promotion successfully!</p>";
+        header("Location: http://localhost/server/marketplace/pages/promotionDetails.php");
     } else {
         echo "<p class='text-center text-danger'>Please select a promotion and products!</p>";
     }
