@@ -81,8 +81,49 @@
 
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
+
+function sendEmail_verification($fName, $email){
+    $mail = new PHPMailer(true);
+
+    $mail->isSMTP();
+    $mail->SMTPAuth = true;
+
+    $mail->Host = "smtp.gmail.com";
+    $mail->Username = "bishopstore124@gmail.com";
+    $mail->Password = "bishop123store";
+
+    $mail->SMTPSecure = "tls";
+    $mail->Port = 587;
+
+    $mail->setFrom("bishopstore124@gmail.com", $fName);
+    $mail->addAddress($email);
+    $mail->isHTML(true);
+    $mail->Subject = "Email verification from Bishop";
+
+    $email_template = "
+        <h2>You have Registered to Bishop online store</h2>
+        <h5>Verify your email address to Login with the below given link</h5>
+        <br><br>
+        <a href='http://localhost/server/marketplace/pages/home.php'>Verify</a>
+    ";
+
+    $mail->Body = $email_template;
+    $mail->send();
+    echo "Message has been sent";
+}
+
 if(isset($_POST['submit'])){
 
+    $fName = $_POST['fname'];
+    $lName = $_POST['lname'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
     $emailCheck = $database->prepare('SELECT Email FROM users WHERE Email = :email');
     $emailCheck->bindParam(':email',$_POST['email']);
     $emailCheck->execute();
@@ -93,25 +134,27 @@ if(isset($_POST['submit'])){
             customers(FName,LName,PhoneNumber,Email,Address)
             VALUES(:FName,	:LName,	:PhoneNumber,:Email	,:Address)
             ');
-            $insert->bindParam('FName',$_POST['fname']);
-            $insert->bindParam('LName',$_POST['lname']);
-            $insert->bindParam('PhoneNumber',$_POST['phone']);
-            $insert->bindParam('Email',$_POST['email']);
-            $insert->bindParam('Address',$_POST['address']);
+            $insert->bindParam('FName',$fName);
+            $insert->bindParam('LName',$lName);
+            $insert->bindParam('PhoneNumber',$phone);
+            $insert->bindParam('Email',$email);
+            $insert->bindParam('Address',$address);
             $insert->execute();
             $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
             $getId->bindParam("EMAIL",$_POST['email']);
             $getId->execute();
             $customerId = $getId->fetch(PDO::FETCH_ASSOC);
             $cid=$customerId["Customer_Id"];
+            sendEmail_verification("$fName", "$email");
         }
 
+        $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $insertUser = $database->prepare('INSERT INTO 
         users(Username,Password,UserType,FName,LName,Email,Customer_Id)
         VALUES(:username,:password,:role,:fname,:lname,:email,:customerId)
         ');
         $insertUser->bindParam('username',$_POST['username']);
-        $insertUser->bindParam('password',$_POST['password']);
+        $insertUser->bindParam('password',$hashedPassword);
         $insertUser->bindParam('role',$_POST['role']);
         $insertUser->bindParam('fname',$_POST['fname']);
         $insertUser->bindParam('lname',$_POST['lname']);

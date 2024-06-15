@@ -49,13 +49,15 @@
                         if (isset($_POST['submit'])) {
                             $username = $_POST['username'];
                             $password = $_POST['password'];
-                            $login = $database->prepare("SELECT * FROM users WHERE Username=:username && Password=:password");
+                            $login = $database->prepare("SELECT * FROM users WHERE Username=:username");
                             $login->bindParam("username", $username);
-                            $login->bindParam("password", $password);
                             $login->execute();
                             if ($login->rowCount() > 0) {
                                 $user = $login->fetch(PDO::FETCH_ASSOC);
-                                $_SESSION['user_type'] = $user['UserType'];
+                                $hashedPassword = $user['Password'];
+                                if(password_verify($password, $hashedPassword)){
+                                    $_SESSION['user_type'] = $user['UserType'];
+                                }
                                 header("Location: http://localhost/server/marketplace/pages/home.php");
                             } else {
                                 echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
