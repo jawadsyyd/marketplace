@@ -61,11 +61,11 @@
 
                 <div class="col-4 col-md-3">
                     <label for="inputPhNb4" class="form-label lPhone">Phone number</label>
-                    <input type="tel" name="phone" class="form-control" id="phone" required>
+                    <input type="tel" name="phone" class="form-control" id="phone">
                 </div>
                 <div class="col-4 col-md-3">
                     <label for="inputPhNb4" class="form-label lAddress">Address</label>
-                    <textarea type="tel" name="address" class="form-control" id="address" required></textarea>
+                    <textarea type="tel" name="address" class="form-control" id="address"></textarea>
                 </div>
                 <div class="col-12">
                     <button type="submit" name="submit" class="btn btn-dark px-3">Sign in</button>

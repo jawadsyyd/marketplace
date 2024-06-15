@@ -2,6 +2,12 @@
     $username = 'root';
     $password = '';
     $database = new PDO('mysql:host=localhost;dbname=bishop;',$username,$password);
+    session_start();
+    if(empty($_SESSION['user_type'])){
+        header("Location : http://localhost/server/marketplace/pages/login.php");
+        exit();
+    }
+    include('./nav.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +21,6 @@
 </head>
 
 <body>
-    <?php
-    include('./nav.php');
-    
-    ?>
-
     <!-- START SLIDER -->
 
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">

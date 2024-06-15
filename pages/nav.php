@@ -17,7 +17,7 @@
 
 <body>
     <?php
-        session_start();
+        // session_start();
         $is_admin = ($_SESSION['user_type'] === 'Admin');
     ?>
     <nav class="navbar navbar-expand-lg bg-white-tertiary py-4">
@@ -35,49 +35,64 @@
                 <div class="col-9">
                     <ul class="navbar-nav d-flex justify-content-around">
                         <li class="nav-item ms-xl-5 ps-xl-5">
-                            <a class="nav-link active link-dark" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active link-dark" aria-current="page"
+                                href="http://localhost/server/marketplace/pages/home.php">Home</a>
                         </li>
                         <li class="nav-item ms-xl-5">
-                            <a class="nav-link link-dark" href="#AllCategories">Shop</a>
+                            <a class="nav-link link-dark"
+                                href="http://localhost/server/marketplace/pages/home.php#AllCategories">Shop</a>
                         </li>
                         <li class="nav-item ms-xl-5">
-                            <a class="nav-link link-dark" href="#promotion">Promotions</a>
+                            <a class="nav-link link-dark"
+                                href="http://localhost/server/marketplace/pages/home.php#promotion">Promotions</a>
                         </li>
                         <li class="nav-item ms-xl-5 d-xl-none">
                             <a class="nav-link link-dark" href="#">Cart</a>
                         </li>
                         <!-- DROPDOWN -->
                         <?php if ($is_admin): ?>
-                            <li class="nav-item ms-xl-5">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Pages
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                                href="http://localhost/server/marketplace/pages/products.php">Products</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="http://localhost/server/marketplace/pages/categories.php">Categories</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="http://localhost/server/marketplace/pages/promotions.php">Promotions</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="http://localhost/server/marketplace/pages/selectProducts.php">Promotion Details</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                        <li class="nav-item ms-xl-5">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Pages
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="http://localhost/server/marketplace/pages/products.php">Products</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="http://localhost/server/marketplace/pages/categories.php">Categories</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="http://localhost/server/marketplace/pages/promotions.php">Promotions</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="http://localhost/server/marketplace/pages/promotionDetails.php">Promotion
+                                            Details</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <?php endif; ?>
                         <!-- DROPDOWN -->
                         <li class="nav-item ms-xl-5">
-                            <a class="nav-link link-dark" href="#footer">Contact</a>
+                            <a class="nav-link link-dark"
+                                href="http://localhost/server/marketplace/pages/home.php#footer">Contact</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-3 d-flex justify-content-end  d-none d-xl-flex">
+                    <button type="button" class="btn position-relative">
+                        <a href="logout.php"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                            </svg></a>
+
+                    </button>
                     <button type="button" class="btn position-relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
                             class="bi bi-cart2" viewBox="0 0 16 16">

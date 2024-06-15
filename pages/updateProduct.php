@@ -5,6 +5,13 @@ $password = '';
 $dbname = "bishop";
 $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
 $conn = new mysqli($serverName, $username, $password, $dbname);
+session_start();
+        if(empty($_SESSION['user_type'])){
+            header("Location : http://localhost/server/marketplace/pages/Login.php");
+        }
+        if($_SESSION['user_type'] === 'Customer'){
+            header("Location : http://localhost/server/marketplace/pages/home.php");
+        }
 ?>
 
 <?php

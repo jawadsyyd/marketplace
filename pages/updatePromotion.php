@@ -5,6 +5,13 @@ $password = '';
 $dbname = "bishop";
 $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
 $conn = new mysqli($serverName, $username, $password, $dbname);
+session_start();
+        if(empty($_SESSION['user_type'])){
+            header("Location : http://localhost/server/marketplace/pages/Login.php");
+        }
+        if($_SESSION['user_type'] === 'Customer'){
+            header("Location : http://localhost/server/marketplace/pages/home.php");
+        }
 ?>
 
 <?php
@@ -69,17 +76,20 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="productPrice" class="form-label fw-semibold">Discount Type:</label>
-                        <input type="text" name="Discount_Type" class="form-control" value="<?php echo $discountType?>" required>
+                        <input type="text" name="Discount_Type" class="form-control" value="<?php echo $discountType?>"
+                            required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="productDescription" class="form-label fw-semibold">Start date:</label>
-                        <input type="date" name="Start_Date" class="form-control" value="<?php echo $start_date?>" required>
+                        <input type="date" name="Start_Date" class="form-control" value="<?php echo $start_date?>"
+                            required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="productImage" class="form-label fw-semibold">discount Value:</label>
-                        <input type="text" name="Discount_Value" class="form-control" value="<?php echo $discountValue?>" required>
+                        <input type="text" name="Discount_Value" class="form-control"
+                            value="<?php echo $discountValue?>" required>
                     </div>
                 </div>
                 <div class="row">

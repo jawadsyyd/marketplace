@@ -2,6 +2,13 @@
     $username = 'root';
     $password = '';
     $database = new PDO('mysql:host=localhost;dbname=bishop;',$username,$password);
+    session_start();
+        if(empty($_SESSION['user_type'])){
+            header("Location : http://localhost/server/marketplace/pages/Login.php");
+        }
+        if($_SESSION['user_type'] === 'Customer'){
+            header("Location : http://localhost/server/marketplace/pages/home.php");
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
