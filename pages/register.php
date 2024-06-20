@@ -81,41 +81,41 @@
 
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php';
+// require '../vendor/autoload.php';
 
-function sendEmail_verification($fName, $email){
-    $mail = new PHPMailer(true);
+// function sendEmail_verification($fName, $email){
+//     $mail = new PHPMailer(true);
 
-    $mail->isSMTP();
-    $mail->SMTPAuth = true;
+//     $mail->isSMTP();
+//     $mail->SMTPAuth = true;
 
-    $mail->Host = "smtp.gmail.com";
-    $mail->Username = "bishopstore124@gmail.com";
-    $mail->Password = "bishop123store";
+//     $mail->Host = "smtp.gmail.com";
+//     $mail->Username = "bishopstore124@gmail.com";
+//     $mail->Password = "bishop123store";
 
-    $mail->SMTPSecure = "tls";
-    $mail->Port = 587;
+//     $mail->SMTPSecure = "tls";
+//     $mail->Port = 587;
 
-    $mail->setFrom("bishopstore124@gmail.com", $fName);
-    $mail->addAddress($email);
-    $mail->isHTML(true);
-    $mail->Subject = "Email verification from Bishop";
+//     $mail->setFrom("bishopstore124@gmail.com", $fName);
+//     $mail->addAddress($email);
+//     $mail->isHTML(true);
+//     $mail->Subject = "Email verification from Bishop";
 
-    $email_template = "
-        <h2>You have Registered to Bishop online store</h2>
-        <h5>Verify your email address to Login with the below given link</h5>
-        <br><br>
-        <a href='http://localhost/server/marketplace/pages/home.php'>Verify</a>
-    ";
+//     $email_template = "
+//         <h2>You have Registered to Bishop online store</h2>
+//         <h5>Verify your email address to Login with the below given link</h5>
+//         <br><br>
+//         <a href='http://localhost/server/marketplace/pages/home.php'>Verify</a>
+//     ";
 
-    $mail->Body = $email_template;
-    $mail->send();
-    echo "Message has been sent";
-}
+//     $mail->Body = $email_template;
+//     $mail->send();
+//     echo "Message has been sent";
+// }
 
 if(isset($_POST['submit'])){
 
@@ -140,15 +140,21 @@ if(isset($_POST['submit'])){
             $insert->bindParam('Email',$email);
             $insert->bindParam('Address',$address);
             $insert->execute();
+
             $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
             $getId->bindParam("EMAIL",$_POST['email']);
             $getId->execute();
+
             $customerId = $getId->fetch(PDO::FETCH_ASSOC);
+
             $cid=$customerId["Customer_Id"];
-            sendEmail_verification("$fName", "$email");
+
+            // sendEmail_verification("$fName", "$email");
         }
 
-        $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $password = $_POST['password'];
+        $hashedPassword = md5($password);
+        
         $insertUser = $database->prepare('INSERT INTO 
         users(Username,Password,UserType,FName,LName,Email,Customer_Id)
         VALUES(:username,:password,:role,:fname,:lname,:email,:customerId)
@@ -161,8 +167,8 @@ if(isset($_POST['submit'])){
         $insertUser->bindParam('email',$_POST['email']);
         $insertUser->bindParam('customerId',$cid);
         $insertUser->execute();
-        header("Location: http://localhost/server/marketplace/pages/home.php");
-        exit;
+        header("Location: http://localhost/server/marketplace/pages/login.php");
+        // exit;
 
     }else{
         echo "<div class='container' style='margin-top: -7rem;'>
