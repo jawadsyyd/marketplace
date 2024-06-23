@@ -40,7 +40,7 @@
                         </li>
                         <li class="nav-item ms-xl-5">
                             <a class="nav-link link-dark"
-                                href="http://localhost/server/marketplace/pages/home.php#AllCategories">Shop</a>
+                                href="http://localhost/server/marketplace/pages/showProducts.php">Shop</a>
                         </li>
                         <li class="nav-item ms-xl-5">
                             <a class="nav-link link-dark"
