@@ -39,7 +39,7 @@
                             <div class="">
                                 <button type="submit" class="btn btn-primary" name="submit">Login</button>
                                 <div class="float-end">
-                                    <a href="" style="text-decoration:none">Forget password?</a>
+                                    <a href="http://localhost/server/marketplace/reset.php" style="text-decoration:none">Forget password?</a>
                                 </div>
                             </div>
                         </form>
@@ -57,7 +57,7 @@
                             $login->bindParam("password", $truncated_password);
                             $login->execute();
                             $user = $login->fetch();
-                            if ($user) {
+                            if ($user && $user['Activated'] != 0) {
                                 session_start();
                                 $_SESSION['user_type'] = $user['UserType'];
                                 header("Location: http://localhost/server/marketplace/pages/home.php");

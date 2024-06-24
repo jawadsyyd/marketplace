@@ -80,43 +80,6 @@
 </html>
 
 <?php
-
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-
-// require '../vendor/autoload.php';
-
-// function sendEmail_verification($fName, $email){
-//     $mail = new PHPMailer(true);
-
-//     $mail->isSMTP();
-//     $mail->SMTPAuth = true;
-
-//     $mail->Host = "smtp.gmail.com";
-//     $mail->Username = "bishopstore124@gmail.com";
-//     $mail->Password = "bishop123store";
-
-//     $mail->SMTPSecure = "tls";
-//     $mail->Port = 587;
-
-//     $mail->setFrom("bishopstore124@gmail.com", $fName);
-//     $mail->addAddress($email);
-//     $mail->isHTML(true);
-//     $mail->Subject = "Email verification from Bishop";
-
-//     $email_template = "
-//         <h2>You have Registered to Bishop online store</h2>
-//         <h5>Verify your email address to Login with the below given link</h5>
-//         <br><br>
-//         <a href='http://localhost/server/marketplace/pages/home.php'>Verify</a>
-//     ";
-
-//     $mail->Body = $email_template;
-//     $mail->send();
-//     echo "Message has been sent";
-// }
-
 if(isset($_POST['submit'])){
 
     $fName = $_POST['fname'];
@@ -124,6 +87,7 @@ if(isset($_POST['submit'])){
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $address = $_POST['address'];
+
     $emailCheck = $database->prepare('SELECT Email FROM users WHERE Email = :email');
     $emailCheck->bindParam(':email',$_POST['email']);
     $emailCheck->execute();
@@ -156,8 +120,8 @@ if(isset($_POST['submit'])){
         $hashedPassword = md5($password);
         
         $insertUser = $database->prepare('INSERT INTO 
-        users(Username,Password,UserType,FName,LName,Email,Customer_Id)
-        VALUES(:username,:password,:role,:fname,:lname,:email,:customerId)
+        users(Username,Password,UserType,FName,LName,Email,Security_Code,Customer_Id)
+        VALUES(:username,:password,:role,:fname,:lname,:email,:Security_Code,:customerId)
         ');
         $insertUser->bindParam('username',$_POST['username']);
         $insertUser->bindParam('password',$hashedPassword);
@@ -165,11 +129,29 @@ if(isset($_POST['submit'])){
         $insertUser->bindParam('fname',$_POST['fname']);
         $insertUser->bindParam('lname',$_POST['lname']);
         $insertUser->bindParam('email',$_POST['email']);
+        // SECURITY CODE [START]
+        $securityCode = md5(date("h:i:s"));
+        $insertUser->bindParam('Security_Code',$securityCode);
+        // SECURITY CODE [END]
         $insertUser->bindParam('customerId',$cid);
-        $insertUser->execute();
-        header("Location: http://localhost/server/marketplace/pages/login.php");
-        // exit;
 
+        if($insertUser->execute()){
+            require_once "../mail.php";
+            $mail->addAddress($_POST['email']);
+            $mail->Subject = "Verification";
+            $mail->Body = '<h1>Thank you for your registration</h1>'
+            . '<div>verification link</div>' . '<a href="http://localhost/server/marketplace/active.php?code=' .$securityCode. '">' . 'http://localhost/server/marketplace/active.php' . '?code=' . $securityCode . '</a>';
+            $mail->setFrom('bishopstore124@gmail.com', 'Bishop Store');
+            $mail->send();
+            echo "<div class='container' style='margin-top: -7rem;'>
+        <div class='alert alert-info alert-dismissible fade show' role='alert'>
+            <strong>Verification Code Sent!</strong> Please check the verification code sent to <strong>".$_POST['email']."</strong>.
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>
+      </div>";
+        }else{
+
+        }
     }else{
         echo "<div class='container' style='margin-top: -7rem;'>
         <div class='alert alert-warning' role='alert'>
