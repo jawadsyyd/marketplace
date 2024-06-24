@@ -44,7 +44,7 @@
                         </li>
                         <li class="nav-item ms-xl-5">
                             <a class="nav-link link-dark"
-                                href="http://localhost/server/marketplace/pages/home.php#promotion">Promotions</a>
+                                href="http://localhost/server/marketplace/pages/promotionShopping.php">Promotions</a>
                         </li>
                         <li class="nav-item ms-xl-5 d-xl-none">
                             <a class="nav-link link-dark" href="#">Cart</a>

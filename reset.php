@@ -10,21 +10,38 @@
 <body>
     <?php
     if(!isset($_GET['code'])){
-        echo '<div class="container my-5">
-        <h1 class="text-center mb-3">Reset Password</h1>
-    <form action="" method="post">
-        <label for="inputPassword5" class="form-label">Email</label>
-        <input type="email" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="email" required>
-        <button class="btn btn-info mt-3 px-5 text-center" type="submit" name="reset">Reset</button>
-    </form>
-    </div>';
+        echo '<div class="container mt-5">
+                <div class="card mx-auto" style="max-width: 400px;">
+                    <div class="card-body">
+                    <h1 class="text-center mb-3">Reset Password</h1>
+                    <form action="" method="post">
+                        <label for="inputPassword5" class="form-label">Email</label>
+                        <input type="email" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="email" required>
+                        <div class="text-center">
+                            <button class="btn btn-primary mt-3 px-3 text-center" type="submit" name="reset">Reset</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>';
     }else if(isset($_GET['code'])&&isset($_GET['email'])){
-        echo'<div class="container my-5"><h1 class="text-center mb-3">New Password</h1><form action="" method="post"><label for="inputPassword5" class="form-label">Password</label>
-        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password" required>
-        <div id="passwordHelpBlock" class="form-text">
-          Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-        <br><button class="btn btn-info mt-3 px-5 text-center" type="submit" name="newPassword">Reset</button>
-        </div></form></div>';
+        echo'<div class="container mt-5">
+            <div class="card mx-auto" style="max-width: 400px;">
+                <div class="card-body">
+                <h1 class="text-center mb-3">New Password</h1>
+                <form action="" method="post">
+                    <label for="inputPassword5" class="form-label">Password</label>
+                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password" required>
+                    <div id="passwordHelpBlock" class="form-text">
+                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary mt-3 px-3 text-center" type="submit" name="newPassword">Change Password</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>';
     }
     ?>
     <?php
