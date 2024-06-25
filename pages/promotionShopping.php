@@ -7,7 +7,12 @@ if (empty($_SESSION['user_type'])) {
     header("Location : http://localhost/server/marketplace/pages/login.php");
     exit();
 }
-include ('./nav.php');
+if (!empty($_SESSION['username'])) {
+    $customerName = $_SESSION['username'];
+} else {
+    $customerName = "";
+}
+include('./nav.php');
 ?>
 
 <?php
@@ -55,8 +60,7 @@ include ('./nav.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -75,15 +79,19 @@ include ('./nav.php');
 
         $sales->execute();
         $products = $sales->fetchAll();
+        echo "<div class='container my-5'>
+        <div class='row'>";
         foreach ($products as $product) {
             $name = $product["Name"];
             $description = $product["Description"];
             $price = $product["Price"];
             $discountValue = $product["Discount_Value"];
             $image = $product["Image"];
+            $id = $product['Product_Id'];
             $discountedPrice = calculateDiscountedPrice($price, $discountValue);
-            echo "<div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
-                                <div class='card' style='width: 18rem; height: 400px;'>
+            echo "
+                    <div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
+                        <div class='card' style='width: 18rem; height: 400px;'>
                                     <img src='../products_images/$image' class='card-img-top img-fluid' alt='...'
                                         style='width: 100%; height: 200px; object-fit:contain;'>
                                     <div class='card-body'>
@@ -98,26 +106,61 @@ include ('./nav.php');
                                         <div class='row d-flex align-items-center'>
                                             <div class='col-6'>
                                                 <div class='quantity-section d-flex'>
+
                                                     <button class='btn btn-outline-secondary quantity-button decrease d-flex align-items-center me-1' style='height: 34px;'>-</button>
+
                                                     <input type='number' class='quantity-input me-1 text-center' name='quantity' value='1' min='1' style='width:40px; height: 34px; padding: 2px;'>
+
                                                     <button class='btn btn-outline-secondary quantity-button increase d-flex align-items-center' style='height: 34px;'>+</button>
-                                                </div>
+
+                                                    </div>
                                             </div>
                                             <div class='col-2'></div>
                                             <div class='col-4'>
-                                                <button class='btn btn-outline-secondary d-flex justify-content-center align-items-center' name='add_to_cart' id='add_to_cart'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
+                                                    <a href='http://localhost/server/marketplace/pages/promotionShopping.php?id=" . $id . "&username=" . $customerName . "'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
                                                         fill='currentColor' class='bi bi-cart3' viewBox='0 0 16 16'>
                                                         <path
                                                             d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2' />
-                                                    </svg></button>
+                                                    </svg></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>";
+                    </div>";
         }
+        echo "</div>
+        </div>";
     }
     ?>
+
+    <!-- EDITED BY JAWAD --> <!-- get customerId,productId and add data to table [`orders`] -->
+
+    <?php
+
+    if (isset($_GET['id']) && isset($_GET['username'])) {
+
+        $getProductId = $database->prepare('SELECT Product_Id FROM Products WHERE Product_Id = :Product_Id');
+        $getProductId->bindParam("Product_Id", $_GET['id']);
+        $getProductId->execute();
+        $productClicked = $getProductId->fetch();
+
+        $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
+        $getCustomerId->bindParam("Username", $customerName);
+        $getCustomerId->execute();
+        $idOfCustomer = $getCustomerId->fetch();
+
+        $addToCard = $database->prepare('INSERT INTO orders(Customer_Id,Product_Id) VALUES(:Customer_Id,:Product_Id)');
+        // $addToCard->bindParam("Qty",);
+        // $addToCard->bindParam("Price",);
+        $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+        $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
+        $addToCard->execute();
+    }
+    ?>
+
+    <!-- EDITED BY JAWAD -->
+
+    <script src="../js/quantity.js"></script>
 </body>
 
 </html>

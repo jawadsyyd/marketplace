@@ -7,7 +7,12 @@ if (empty($_SESSION['user_type'])) {
   header("Location : http://localhost/server/marketplace/pages/login.php");
   exit();
 }
-include ('./nav.php');
+if (!empty($_SESSION['username'])) {
+  $customerName = $_SESSION['username'];
+} else {
+  $customerName = "";
+}
+include('./nav.php');
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +22,7 @@ include ('./nav.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products Shopping</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -111,11 +115,11 @@ include ('./nav.php');
                                             </div>
                                             <div class='col-2'></div>
                                             <div class='col-4'>
-                                                <button class='btn btn-outline-secondary d-flex justify-content-center align-items-center' name='add_to_cart' id='add_to_cart'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
+                                                <a href='http://localhost/server/marketplace/pages/showProducts.php?id=" . $product['Product_Id'] . "&username=" . $customerName . "'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
                                                         fill='currentColor' class='bi bi-cart3' viewBox='0 0 16 16'>
                                                         <path
                                                             d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2' />
-                                                    </svg></button>
+                                                    </svg></a>
                                             </div>
                                         </div>
                                     </div>
@@ -163,11 +167,11 @@ include ('./nav.php');
                                             </div>
                                             <div class='col-2'></div>
                                             <div class='col-4'>
-                                                <button class='btn btn-outline-secondary d-flex justify-content-center align-items-center' name='add_to_cart' id='add_to_cart'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
+                                                <a href='http://localhost/server/marketplace/pages/showProducts.php?id=" . $product['Product_Id'] . "&username=" . $customerName . "'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
                                                         fill='currentColor' class='bi bi-cart3' viewBox='0 0 16 16'>
                                                         <path
                                                             d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2' />
-                                                    </svg></button>
+                                                    </svg></a>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +181,6 @@ include ('./nav.php');
               } else {
                 echo '<div class="container"><div class="row"><div class"col-12"><h1>No Products Found in This Category</h1></div></div></div>';
               }
-
             }
             ?>
           </div>
@@ -190,9 +193,7 @@ include ('./nav.php');
               $countProducts->execute();
               $nbOfProducts = $countProducts->fetchColumn();
               ?>
-              <a class="nav-link link-dark active" id="AllCategories"
-                href="http://localhost/server/marketplace/pages/showProducts.php">All Products<span
-                  class="px-1"><?php echo "(" . $nbOfProducts . ")" ?></span></a>
+              <a class="nav-link link-dark active" id="AllCategories" href="http://localhost/server/marketplace/pages/showProducts.php">All Products<span class="px-1"><?php echo "(" . $nbOfProducts . ")" ?></span></a>
             </h4>
             <?php
 
@@ -214,9 +215,35 @@ include ('./nav.php');
       </div>
     </div>
   </div>
+  <!-- EDITED BY JAWAD --> <!-- get customerId,productId and add data to table [`orders`] -->
+
+  <?php
+
+  if (isset($_GET['id']) && isset($_GET['username'])) {
+
+    $getProductId = $database->prepare('SELECT Product_Id FROM Products WHERE Product_Id = :Product_Id');
+    $getProductId->bindParam("Product_Id", $_GET['id']);
+    $getProductId->execute();
+    $productClicked = $getProductId->fetch();
+
+    $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
+    $getCustomerId->bindParam("Username", $customerName);
+    $getCustomerId->execute();
+    $idOfCustomer = $getCustomerId->fetch();
+
+    $addToCard = $database->prepare('INSERT INTO orders(Customer_Id,Product_Id) VALUES(:Customer_Id,:Product_Id)');
+    // $addToCard->bindParam("Qty",);
+    // $addToCard->bindParam("Price",);
+    $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+    $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
+    $addToCard->execute();
+  }
+  ?>
+
+  <!-- EDITED BY JAWAD -->
   <script src="../js/quantity.js"></script>
   <?php
-  include ("./footer.php");
+  include("./footer.php");
   ?>
 </body>
 

@@ -1,7 +1,7 @@
 <?php
-    $username = 'root';
-    $password = '';
-    $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
+$username = 'root';
+$password = '';
+$database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
 ?>
 
 <!DOCTYPE html>
@@ -11,8 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -28,13 +27,11 @@
                         <form action="login.php" method="post">
                             <div class="form-group mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Enter username" required>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Enter password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                             </div>
                             <div class="">
                                 <button type="submit" class="btn btn-primary" name="submit">Login</button>
@@ -48,7 +45,7 @@
                         if (isset($_POST['submit'])) {
                             $username = $_POST['username'];
                             $password = $_POST['password'];
-                        
+
                             $hashed_password = md5($password);
                             $truncated_password = substr($hashed_password, 0, 25);
 
@@ -60,6 +57,7 @@
                             if ($user && $user['Activated'] != 0) {
                                 session_start();
                                 $_SESSION['user_type'] = $user['UserType'];
+                                $_SESSION['username'] = $user['Username'];
                                 header("Location: http://localhost/server/marketplace/pages/home.php");
                             } else {
                                 echo '<div class="" style="font-size:14px"><div class="alert alert-danger d-flex align-items-center mt-3" role="alert">
