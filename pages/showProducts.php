@@ -27,72 +27,84 @@ include('./nav.php');
 
 <body>
   <!-- START SLIDER -->
-  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="5000">
-        <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
-        <div class="position-absolute end-50 top-50 z-1001">
-          <div class="row">
-            <div class="col-12 text-center">
-              <h3 class="display-6">Lorem, ipsum dolor.</h3>
-              <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
-              <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW
-                COLLECTION</button>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" style="max-width: 500px;">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="5000">
+            <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
+            <div class="position-absolute end-50 top-50 z-1001">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <h3 class="display-6">Lorem, ipsum dolor.</h3>
+                  <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
+                  <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW
+                    COLLECTION</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2500">
+            <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
+            <div class="position-absolute end-50 top-50 z-1001 flex">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <h3 class="display-6">Lorem, ipsum dolor.</h3>
+                  <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
+                  <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW COLLECTION</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
+            <div class="position-absolute end-50 top-50 z-1001 flex">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <h3 class="display-6">Lorem, ipsum dolor.</h3>
+                  <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
+                  <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW COLLECTION</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <!-- prev next -->
       </div>
-      <div class="carousel-item" data-bs-interval="2500">
-        <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
-        <div class="position-absolute end-50 top-50 z-1001 flex">
-          <div class="row">
-            <div class="col-12 text-center">
-              <h3 class="display-6">Lorem, ipsum dolor.</h3>
-              <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
-              <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW COLLECTION</button>
-            </div>
-          </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
+        <img src="https://placehold.co/558x200/white/black" alt="" class="img-fluid">
+        <div class="position-absolute start-50 bottom-0 mb-5 text-center">
+          <h5 class="d-none d-xl-block">Lorem, ipsum dolor.</h5>
+          <p class="d-none d-xl-block">Lorem, ipsum dolor.</p>
         </div>
       </div>
-      <div class="carousel-item">
-        <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
-        <div class="position-absolute end-50 top-50 z-1001 flex">
-          <div class="row">
-            <div class="col-12 text-center">
-              <h3 class="display-6">Lorem, ipsum dolor.</h3>
-              <h1 class="display-5  d-none d-md-block d-xl-block">Lorem ipsum dolor sit.</h1>
-              <button class="btn btn-dark rounded-pill text-uppercase btn-sm">VIEW COLLECTION</button>
-            </div>
-          </div>
+      <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
+        <img src="https://placehold.co/558x200/white/black" alt="" class="img-fluid">
+        <div class="position-absolute start-50 bottom-0 mb-5 text-center">
+          <h5 class="d-none d-xl-block">Lorem, ipsum dolor.</h5>
+          <p class="d-none d-xl-block">Lorem, ipsum dolor.</p>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <!-- END SLIDER -->
-  <div class="container-fluid">
-    <div class="my-5 justify-content-around">
-      <div class="row my-5">
-        <div class="col-12 col-sm-10">
-          <div class="row">
-            <?php
-            if ($_SERVER['REQUEST_URI'] == "/server/marketplace/pages/showProducts.php") {
-              $selectAllProducts = $database->prepare("SELECT * FROM products ORDER BY Category_Id ASC");
-              $selectAllProducts->execute();
-              $products = $selectAllProducts->fetchAll();
-              foreach ($products as $product) {
-                $name = $product["Name"];
-                $description = $product["Description"];
-                $price = $product["Price"];
-                $image = $product["Image"];
-                echo "<div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
+    <!-- END SLIDER -->
+    <div class="container-fluid">
+      <div class="my-5 justify-content-around">
+        <div class="row my-5">
+          <div class="col-12 col-sm-10">
+            <div class="row">
+              <?php
+              if ($_SERVER['REQUEST_URI'] == "/server/marketplace/pages/showProducts.php") {
+                $selectAllProducts = $database->prepare("SELECT * FROM products ORDER BY Category_Id ASC");
+                $selectAllProducts->execute();
+                $products = $selectAllProducts->fetchAll();
+                foreach ($products as $product) {
+                  $name = $product["Name"];
+                  $description = $product["Description"];
+                  $price = $product["Price"];
+                  $image = $product["Image"];
+                  echo "<div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
                                 <div class='card' style='width: 18rem; height: 400px;'>
                                     <img src='../products_images/$image' class='card-img-top img-fluid' alt='...'
                                         style='width: 100%; height: 200px; object-fit:contain;'>
@@ -125,26 +137,26 @@ include('./nav.php');
                                     </div>
                                 </div>
                             </div>";
-              }
-            } else if (preg_match("~^/server/marketplace/pages/showProducts.php/([^/]+)$~", $_SERVER['REQUEST_URI'], $matches)) {
-              // Extract catName from the URL
-              $catName = $matches[1];
-              // Decode URL encoded characters
-              $catName = urldecode($catName);
+                }
+              } else if (preg_match("~^/server/marketplace/pages/showProducts.php/([^/]+)$~", $_SERVER['REQUEST_URI'], $matches)) {
+                // Extract catName from the URL
+                $catName = $matches[1];
+                // Decode URL encoded characters
+                $catName = urldecode($catName);
 
-              $getCategoryId = $database->prepare("SELECT Category_Id FROM categories WHERE Category_Name=:categoryName");
-              $getCategoryId->bindParam("categoryName", $catName);
-              $getCategoryId->execute();
-              $currentCategoryId = $getCategoryId->fetchColumn();
+                $getCategoryId = $database->prepare("SELECT Category_Id FROM categories WHERE Category_Name=:categoryName");
+                $getCategoryId->bindParam("categoryName", $catName);
+                $getCategoryId->execute();
+                $currentCategoryId = $getCategoryId->fetchColumn();
 
-              $selectAllProducts = $database->prepare("SELECT * FROM products WHERE Category_Id = :categoryId ORDER BY Name ASC");
-              $selectAllProducts->bindParam('categoryId', $currentCategoryId);
-              $selectAllProducts->execute();
-              $products = $selectAllProducts->fetchAll();
-              if (count($products) > 0) {
-                foreach ($products as $product) {
-                  $image = $product['Image'];
-                  echo "<div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
+                $selectAllProducts = $database->prepare("SELECT * FROM products WHERE Category_Id = :categoryId ORDER BY Name ASC");
+                $selectAllProducts->bindParam('categoryId', $currentCategoryId);
+                $selectAllProducts->execute();
+                $products = $selectAllProducts->fetchAll();
+                if (count($products) > 0) {
+                  foreach ($products as $product) {
+                    $image = $product['Image'];
+                    echo "<div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
                                 <div class='card' style='width: 18rem; height: 400px;'>
                                     <img src='../products_images/$image' class='card-img-top img-fluid' alt='...'
                                         style='width: 100%; height: 200px; object-fit:contain;'>
@@ -177,74 +189,100 @@ include('./nav.php');
                                     </div>
                                 </div>
                             </div>";
+                  }
+                } else {
+                  echo '<div class="container"><div class="row"><div class"col-12"><h1>No Products Found in This Category</h1></div></div></div>';
                 }
-              } else {
-                echo '<div class="container"><div class="row"><div class"col-12"><h1>No Products Found in This Category</h1></div></div></div>';
               }
-            }
-            ?>
-          </div>
-        </div>
-        <div class="col-sm-2 col-12 position-relative d-none d-sm-block">
-          <ul class="navbar-nav bg-dark-subtle text-center position-md-absolute start-0" style="border-radius: 5px;">
-            <h4>
-              <?php
-              $countProducts = $database->prepare("SELECT COUNT(*) FROM products");
-              $countProducts->execute();
-              $nbOfProducts = $countProducts->fetchColumn();
               ?>
-              <a class="nav-link link-dark active" id="AllCategories" href="http://localhost/server/marketplace/pages/showProducts.php">All Products<span class="px-1"><?php echo "(" . $nbOfProducts . ")" ?></span></a>
-            </h4>
-            <?php
+            </div>
+          </div>
+          <div class="col-sm-2 col-12 position-relative d-none d-sm-block">
+            <ul class="navbar-nav bg-dark-subtle text-center position-md-absolute start-0" style="border-radius: 5px;">
+              <h4>
+                <?php
+                $countProducts = $database->prepare("SELECT COUNT(*) FROM products");
+                $countProducts->execute();
+                $nbOfProducts = $countProducts->fetchColumn();
+                ?>
+                <a class="nav-link link-dark active" id="AllCategories" href="http://localhost/server/marketplace/pages/showProducts.php">All Products<span class="px-1"><?php echo "(" . $nbOfProducts . ")" ?></span></a>
+              </h4>
+              <?php
 
-            $getCategoriesNames = $database->prepare("SELECT Category_Name FROM categories");
-            $getCategoriesNames->execute();
-            $categoriesNames = $getCategoriesNames->fetchAll();
-            foreach ($categoriesNames as $catName) {
-              $countProductsByCat = $database->prepare("SELECT COUNT(*) FROM products JOIN categories ON products.Category_Id = categories.Category_Id WHERE categories.category_Name = :CatName");
-              $countProductsByCat->bindParam("CatName", $catName['Category_Name']);
-              $countProductsByCat->execute();
-              $nbOfProInCat = $countProductsByCat->fetchColumn();
-              echo '<li class="nav-item" id="' . $catName['Category_Name'] . '" >
+              $getCategoriesNames = $database->prepare("SELECT Category_Name FROM categories");
+              $getCategoriesNames->execute();
+              $categoriesNames = $getCategoriesNames->fetchAll();
+              foreach ($categoriesNames as $catName) {
+                $countProductsByCat = $database->prepare("SELECT COUNT(*) FROM products JOIN categories ON products.Category_Id = categories.Category_Id WHERE categories.category_Name = :CatName");
+                $countProductsByCat->bindParam("CatName", $catName['Category_Name']);
+                $countProductsByCat->execute();
+                $nbOfProInCat = $countProductsByCat->fetchColumn();
+                echo '<li class="nav-item" id="' . $catName['Category_Name'] . '" >
                     <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/showProducts.php/' . $catName["Category_Name"] . "#" . $catName["Category_Name"] . '" aria-disabled="true">' . $catName["Category_Name"] . " (" . $nbOfProInCat . ") " . '</a>
                 </li>';
-            }
-            ?>
-          </ul>
+              }
+              ?>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <?php
+  include("./footer.php");
+  ?>
   <!-- EDITED BY JAWAD --> <!-- get customerId,productId and add data to table [`orders`] -->
 
   <?php
 
-  if (isset($_GET['id']) && isset($_GET['username'])) {
+    if (isset($_GET['id']) && isset($_GET['username'])) {
 
-    $getProductId = $database->prepare('SELECT Product_Id FROM Products WHERE Product_Id = :Product_Id');
-    $getProductId->bindParam("Product_Id", $_GET['id']);
-    $getProductId->execute();
-    $productClicked = $getProductId->fetch();
+        $getProductId = $database->prepare('SELECT Product_Id FROM Products WHERE Product_Id = :Product_Id');
+        $getProductId->bindParam("Product_Id", $_GET['id']);
+        $getProductId->execute();
+        $productClicked = $getProductId->fetch();
 
-    $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
-    $getCustomerId->bindParam("Username", $customerName);
-    $getCustomerId->execute();
-    $idOfCustomer = $getCustomerId->fetch();
+        $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
+        $getCustomerId->bindParam("Username", $customerName);
+        $getCustomerId->execute();
+        $idOfCustomer = $getCustomerId->fetch();
 
-    $addToCard = $database->prepare('INSERT INTO orders(Customer_Id,Product_Id) VALUES(:Customer_Id,:Product_Id)');
-    // $addToCard->bindParam("Qty",);
-    // $addToCard->bindParam("Price",);
-    $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
-    $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
-    $addToCard->execute();
-  }
-  ?>
+        $checkProduct = $database->prepare("SELECT * FROM orders WHERE Product_Id=:Product_Id AND Customer_Id=:Customer_Id");
+        $checkProduct->bindParam("Product_Id", $productClicked['Product_Id']);
+        $checkProduct->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+        $checkProduct->execute();
+        $isHere = $checkProduct->fetch();
 
+        if ($isHere) {
+            echo '<div class="container mt-4">
+            <!-- Faild alert -->
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+              <strong>Faild!</strong> The product is  already in your cart.
+                <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">Check my Cart</span></a>
+            </div>
+          </div>';
+        } else {
+
+            $addToCard = $database->prepare('INSERT INTO orders(Customer_Id,Product_Id) VALUES(:Customer_Id,:Product_Id)');
+            // $addToCard->bindParam("Qty",);
+            $addToCard->bindParam("Price",$productClicked['Price']);
+            $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+            $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
+            if ($addToCard->execute()) {
+                echo '<div class="container mt-4">
+    <!-- Success alert -->
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <strong>Success!</strong> The product has been added to your cart successfully.
+        <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">View Cart</span></a>
+        <a href="http://localhost/server/marketplace/pages/promotionShopping.php" class="link-dark"><span class="btn bg-light rounded-pill" >Continue Shopping</span></a></div>
+    </div>
+  </div>';
+            }
+        }
+    }
+    ?>
   <!-- EDITED BY JAWAD -->
   <script src="../js/quantity.js"></script>
-  <?php
-  include("./footer.php");
-  ?>
 </body>
 
 </html>

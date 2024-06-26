@@ -88,10 +88,17 @@ include('./nav.php');
             $discountValue = $product["Discount_Value"];
             $image = $product["Image"];
             $id = $product['Product_Id'];
+
+            $desc = $database->prepare("SELECT Discount_Value FROM promotions INNER JOIN product_promotion ON promotions.Promotion_Id = product_promotion.Promotion_Id WHERE Product_Id = :Product_Id");
+            $desc->bindParam("Product_Id", $id);
+            $desc->execute();
+            $descValue = $desc->fetch();
+
             $discountedPrice = calculateDiscountedPrice($price, $discountValue);
             echo "
                     <div class='col-xxl-3 col-xl-4 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center'>
-                        <div class='card' style='width: 18rem; height: 400px;'>
+                        <div class='card position-relative' style='width: 18rem; height: 400px;'>
+                                    <div class='position-absolute end-0 top-0 me-3 mt-2 rounded-circle bg-warning p-2'>" . $descValue['Discount_Value'] . " %</div>
                                     <img src='../products_images/$image' class='card-img-top img-fluid' alt='...'
                                         style='width: 100%; height: 200px; object-fit:contain;'>
                                     <div class='card-body'>
@@ -117,7 +124,7 @@ include('./nav.php');
                                             </div>
                                             <div class='col-2'></div>
                                             <div class='col-4'>
-                                                    <a href='http://localhost/server/marketplace/pages/promotionShopping.php?id=" . $id . "&username=" . $customerName . "'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
+                                                    <a href='http://localhost/server/marketplace/pages/promotionShopping.php?id=" . $id . "&username=" . $customerName . "'><svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'
                                                         fill='currentColor' class='bi bi-cart3' viewBox='0 0 16 16'>
                                                         <path
                                                             d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2' />
@@ -139,7 +146,7 @@ include('./nav.php');
 
     if (isset($_GET['id']) && isset($_GET['username'])) {
 
-        $getProductId = $database->prepare('SELECT Product_Id FROM Products WHERE Product_Id = :Product_Id');
+        $getProductId = $database->prepare('SELECT Product_Id,Price FROM Products WHERE Product_Id = :Product_Id');
         $getProductId->bindParam("Product_Id", $_GET['id']);
         $getProductId->execute();
         $productClicked = $getProductId->fetch();
@@ -149,12 +156,38 @@ include('./nav.php');
         $getCustomerId->execute();
         $idOfCustomer = $getCustomerId->fetch();
 
-        $addToCard = $database->prepare('INSERT INTO orders(Customer_Id,Product_Id) VALUES(:Customer_Id,:Product_Id)');
-        // $addToCard->bindParam("Qty",);
-        // $addToCard->bindParam("Price",);
-        $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
-        $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
-        $addToCard->execute();
+        $checkProduct = $database->prepare("SELECT * FROM orders WHERE Product_Id=:Product_Id AND Customer_Id=:Customer_Id");
+        $checkProduct->bindParam("Product_Id", $productClicked['Product_Id']);
+        $checkProduct->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+        $checkProduct->execute();
+        $isHere = $checkProduct->fetch();
+
+        if ($isHere) {
+            echo '<div class="container mt-4">
+            <!-- Faild alert -->
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+              <strong>Faild!</strong> The product is  already in your cart.
+                <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">Check my Cart</span></a>
+            </div>
+          </div>';
+        } else {
+
+            $addToCard = $database->prepare('INSERT INTO orders(Price,Customer_Id,Product_Id) VALUES(:Price,:Customer_Id,:Product_Id)');
+            // $addToCard->bindParam("Qty",);
+            $addToCard->bindParam("Price",$productClicked['Price']);
+            $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+            $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
+            if ($addToCard->execute()) {
+                echo '<div class="container mt-4">
+    <!-- Success alert -->
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <strong>Success!</strong> The product has been added to your cart successfully.
+        <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">View Cart</span></a>
+        <a href="http://localhost/server/marketplace/pages/promotionShopping.php" class="link-dark"><span class="btn bg-light rounded-pill" >Continue Shopping</span></a></div>
+    </div>
+  </div>';
+            }
+        }
     }
     ?>
 

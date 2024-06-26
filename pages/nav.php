@@ -40,13 +40,13 @@
                             <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/promotionShopping.php">Promotions</a>
                         </li>
                         <li class="nav-item ms-xl-5 d-xl-none">
-                            <a class="nav-link link-dark" href="#">Cart</a>
+                            <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/cart.php">Cart</a>
                         </li>
                         <!-- DROPDOWN -->
                         <?php if ($is_admin) : ?>
                             <li class="nav-item ms-xl-5">
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-link link-dark link-underline-opacity-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Pages
                                     </button>
                                     <ul class="dropdown-menu">
@@ -67,23 +67,47 @@
                         <li class="nav-item ms-xl-5">
                             <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/home.php#footer">Contact</a>
                         </li>
+                        <li class="nav-item ms-xl-5   d-block d-xl-none">
+                            <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/logout.php">Log Out</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-3 d-flex justify-content-end  d-none d-xl-flex">
-                    <button type="button" class="btn position-relative">
-                        <a href="logout.php" class="link-dark"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
-                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                <div class="col-3 d-flex justify-content-end">
+                    <button type="button" class="btn position-relative   d-none d-xl-flex">
+                        <a href="logout.php" class="link-dark"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
+                                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z" />
                             </svg></a>
-
                     </button>
-                    <button type="button" class="btn position-relative">
+                    <button type="button" class="btn position-relative   d-none d-xl-flex">
                         <a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
                             </svg>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                99+
+                                <?php
+                                    $username = 'root';
+                                    $password = '';
+                                    $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
+                                    if (empty($_SESSION['user_type'])) {
+                                        header("Location : http://localhost/server/marketplace/pages/login.php");
+                                        exit();
+                                    }
+                                    if (!empty($_SESSION['username'])) {
+                                        $customerName = $_SESSION['username'];
+                                    } else {
+                                        $customerName = "";
+                                    }
+                                    $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
+                                    $getCustomerId->bindParam("Username", $customerName);
+                                    $getCustomerId->execute();
+                                    $idOfCustomer = $getCustomerId->fetch();
+                                    $span = $database->prepare("SELECT COUNT(*) FROM orders WHERE Customer_Id = :Customer_Id");
+                                    $span->bindParam("Customer_Id",$idOfCustomer['Customer_Id']);
+                                    $span->execute();
+                                    $number = $span->fetchColumn();
+                                    print_r($number);
+                                ?>
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </a>
