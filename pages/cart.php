@@ -85,7 +85,7 @@ include('./nav.php');
             </div>
             <div class="col-md-1  text-center">
               <div class="card-body">
-                <a class="btn btn-dark rounded-circle flex align-items-center" href="http://localhost/server/marketplace/pages/cart.php?deleteid=' . $product['Product_Id'] . '&customerId=' . $customerid['Customer_Id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <a class="btn btn-dark rounded-circle flex align-items-center" href="http://localhost/server/marketplace/pages/deleteProductFromCart.php?deleteid=' . $product['Product_Id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
 </svg></a>
               </div>
@@ -94,25 +94,6 @@ include('./nav.php');
         ';
       }
       // DISPLAY PRODUCTS IN CARD END
-      ?>
-      <?php
-      if (isset($_GET['deleteid']) && isset($_GET['customerId'])){
-        $id = $_GET['deleteid'];
-        $deleteProduct = $database->prepare("DELETE FROM orders WHERE Product_Id = :Product_Id && Customer_Id = :Customer_Id");
-        $deleteProduct->bindParam("Product_Id", $id);
-        $deleteProduct->bindParam("Customer_Id", $_GET['customerId']);
-        if($deleteProduct->execute()){
-          $productDetails = $database->prepare("SELECT * FROM Products WHERE Product_Id = :Product_Id");
-        $productDetails->bindParam("Product_Id", $id);
-        $productDetails->execute();
-        $details = $productDetails->fetch();
-          $deleted_product_name = $details['Name'];
-          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-          echo '<strong>Success!</strong> ' . htmlspecialchars($deleted_product_name) . ' is deleted from your cart.';
-          echo '<a href="http://localhost/server/marketplace/pages/cart.php">refrech</a>';
-          echo '</div>';
-        }
-      }
       ?>
     </div>
 

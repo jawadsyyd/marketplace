@@ -145,19 +145,12 @@ include('./nav.php');
         <div class="row">
             <?php
             $getProducts = $database->prepare("
-    SELECT p.*, pr.Discount_Value
-    FROM products p
-    LEFT JOIN product_promotion pp ON p.Product_Id = pp.Product_Id
-    RIGHT JOIN promotions pr ON pp.Promotion_Id = pr.Promotion_Id
+    SELECT * FROM products ORDER BY Product_Id ASC
     LIMIT 8
 ");
             $getProducts->execute();
             $products = $getProducts->fetchAll();
-            // $old = $products["Price"];
-            // $new =  $products['Discount_Value'];
-            // $discountedPrice = calculateDiscountedPrice($old,$new);
             foreach ($products as $product) {
-                $DiscountAmount = $product["Price"] * ($product['Discount_Value'] / 100);
                 echo "
         <div class='col-xxl-3 col-xl-3 col-md-4 col-lg-6 col-md-6 col-sm-12 col-12 mb-4 d-flex justify-content-center position-relative'>
             <div class='card' style='width: 19rem;'>
@@ -166,11 +159,9 @@ include('./nav.php');
                     <h5 class='card-title'>" . $product['Name'] . "</h5>
                     <p style='height: 10px;'>" . $product['Description'] . "</p>
                 </div>
-                <div class='position-absolute end-0 top-0 me-3 mt-2 rounded-circle bg-warning p-2'>" . $product['Discount_Value'] . " %</div>
                 <div class='text-center mt-3 bg-light rounded'>
-                    <span class='fw-semibold text-danger' style='text-decoration: line-through;'>$" . $product['Price'] . "</span>
+                    <span class='fw-semibold text-danger'>$" . $product['Price'] . "</span>
                     <br>
-                    <span class='fw-semibold'>$$DiscountAmount</span>
                 </div>
             </div>
         </div>";
