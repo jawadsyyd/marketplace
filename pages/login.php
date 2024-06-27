@@ -12,15 +12,45 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        #title {
+            background-color: #457B9D;
+            color: white;
+        }
+
+        #btnLogIn {
+            background-color: #E63946;
+            color: white;
+        }
+
+        #forget {
+            color: #457B9D;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
     <div class="container mt-5 py-3">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-5">
                 <div class="card shadow">
-                    <div class="card-header text-center">
-                        <h3>Log in</h3>
+                    <div class="card-header text-center display-5 text-capitalize" id="title">
+                        <h3 class="fs-1">Log in</h3>
                     </div>
                     <div class="card-body">
                         <!-- START FORM -->
@@ -33,10 +63,10 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                             </div>
-                            <div class="">
-                                <button type="submit" class="btn btn-primary" name="submit">Login</button>
-                                <div class="float-end">
-                                    <a href="http://localhost/server/marketplace/reset.php" style="text-decoration:none">Forget password?</a>
+                            <div class=" d-flex align-items-center position-relative">
+                                <button type="submit" class="btn px-3" id="btnLogIn" name="submit">Login</button>
+                                <div class="position-absolute end-0">
+                                    <a href="http://localhost/server/marketplace/reset.php" style="text-decoration:none" id="forget">Forget password?</a>
                                 </div>
                             </div>
                         </form>

@@ -1,7 +1,7 @@
 <?php
-    $username = 'root';
-    $password = '';
-    $database = new PDO('mysql:host=localhost;dbname=bishop;',$username,$password);
+$username = 'root';
+$password = '';
+$database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,23 +10,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-    .awm {
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        margin-block: 7rem;
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .awm {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 15px;
+        }
+
+        #title {
+            background-color: #457B9D;
+            letter-spacing: 2px;
+        }
+
+        #btnSignUp {
+            background-color: #E63946;
+            color: white;
+        }
     </style>
+
 </head>
 
 <body>
     <div class="awm mx-3">
-        <div class="container-fluid bg-dark text-light py-3">
+        <div class="container text-light py-3 rounded" id="title">
             <header class="text-center">
-                <h1 class="display-6">Register</h1>
+                <h1 class="display-5 text-uppercase"><strong>Register</strong></h1>
             </header>
         </div>
         <section class="container py-3">
@@ -65,11 +82,11 @@
                 </div>
                 <div class="col-4 col-md-3">
                     <label for="inputPhNb4" class="form-label lAddress">Address</label>
-                    <textarea type="tel" name="address" class="form-control" id="address"></textarea>
+                    <input type="text" name="address" class="form-control" id="address">
                 </div>
-                <div class="col-12">
-                    <button type="submit" name="submit" class="btn btn-dark px-3">Sign in</button>
-                    <a href="login.php" class="px-2" style="text-decoration: none;">Already Have An Account?</a>
+                <div class="col-12 mt-4">
+                    <button type="submit" name="submit" class="btn px-4 py-2" id="btnSignUp">Sign in</button>
+                    <a href="login.php" class="px-2" style="text-decoration: none;color:#1D3557">Already Have An Account?</a>
                 </div>
             </form>
         </section>
@@ -80,7 +97,7 @@
 </html>
 
 <?php
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     $fName = $_POST['fname'];
     $lName = $_POST['lname'];
@@ -89,76 +106,74 @@ if(isset($_POST['submit'])){
     $address = $_POST['address'];
 
     $emailCheck = $database->prepare('SELECT Email FROM users WHERE Email = :email');
-    $emailCheck->bindParam(':email',$_POST['email']);
+    $emailCheck->bindParam(':email', $_POST['email']);
     $emailCheck->execute();
-    
-    if($emailCheck->rowCount()===0){
-        if($_POST['role']==='Customer'){
+
+    if ($emailCheck->rowCount() === 0) {
+        if ($_POST['role'] === 'Customer') {
             $insert = $database->prepare('INSERT INTO 
             customers(FName,LName,PhoneNumber,Email,Address)
             VALUES(:FName,	:LName,	:PhoneNumber,:Email	,:Address)
             ');
-            $insert->bindParam('FName',$fName);
-            $insert->bindParam('LName',$lName);
-            $insert->bindParam('PhoneNumber',$phone);
-            $insert->bindParam('Email',$email);
-            $insert->bindParam('Address',$address);
+            $insert->bindParam('FName', $fName);
+            $insert->bindParam('LName', $lName);
+            $insert->bindParam('PhoneNumber', $phone);
+            $insert->bindParam('Email', $email);
+            $insert->bindParam('Address', $address);
             $insert->execute();
 
             $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
-            $getId->bindParam("EMAIL",$_POST['email']);
+            $getId->bindParam("EMAIL", $_POST['email']);
             $getId->execute();
 
             $customerId = $getId->fetch(PDO::FETCH_ASSOC);
 
-            $cid=$customerId["Customer_Id"];
+            $cid = $customerId["Customer_Id"];
 
             // sendEmail_verification("$fName", "$email");
         }
 
         $password = $_POST['password'];
         $hashedPassword = md5($password);
-        
+
         $insertUser = $database->prepare('INSERT INTO 
         users(Username,Password,UserType,FName,LName,Email,Security_Code,Customer_Id)
         VALUES(:username,:password,:role,:fname,:lname,:email,:Security_Code,:customerId)
         ');
-        $insertUser->bindParam('username',$_POST['username']);
-        $insertUser->bindParam('password',$hashedPassword);
-        $insertUser->bindParam('role',$_POST['role']);
-        $insertUser->bindParam('fname',$_POST['fname']);
-        $insertUser->bindParam('lname',$_POST['lname']);
-        $insertUser->bindParam('email',$_POST['email']);
+        $insertUser->bindParam('username', $_POST['username']);
+        $insertUser->bindParam('password', $hashedPassword);
+        $insertUser->bindParam('role', $_POST['role']);
+        $insertUser->bindParam('fname', $_POST['fname']);
+        $insertUser->bindParam('lname', $_POST['lname']);
+        $insertUser->bindParam('email', $_POST['email']);
         // SECURITY CODE [START]
         $securityCode = md5(date("h:i:s"));
-        $insertUser->bindParam('Security_Code',$securityCode);
+        $insertUser->bindParam('Security_Code', $securityCode);
         // SECURITY CODE [END]
-        $insertUser->bindParam('customerId',$cid);
+        $insertUser->bindParam('customerId', $cid);
 
-        if($insertUser->execute()){
+        if ($insertUser->execute()) {
             require_once "../mail.php";
             $mail->addAddress($_POST['email']);
             $mail->Subject = "Verification";
             $mail->Body = '<h1>Thank you for your registration</h1>'
-            . '<div>verification link</div>' . '<a href="http://localhost/server/marketplace/active.php?code=' .$securityCode. '">' . 'http://localhost/server/marketplace/active.php' . '?code=' . $securityCode . '</a>';
+                . '<div>verification link</div>' . '<a href="http://localhost/server/marketplace/active.php?code=' . $securityCode . '">' . 'http://localhost/server/marketplace/active.php' . '?code=' . $securityCode . '</a>';
             $mail->setFrom('bishopstore124@gmail.com', 'Bishop Store');
             $mail->send();
             echo "<div class='container' style='margin-top: -7rem;'>
         <div class='alert alert-info alert-dismissible fade show' role='alert'>
-            <strong>Verification Code Sent!</strong> Please check the verification code sent to <strong>".$_POST['email']."</strong>.
+            <strong>Verification Code Sent!</strong> Please check the verification code sent to <strong>" . $_POST['email'] . "</strong>.
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>
       </div>";
-        }else{
-
+        } else {
         }
-    }else{
+    } else {
         echo "<div class='container' style='margin-top: -7rem;'>
         <div class='alert alert-warning' role='alert'>
             Email is already in use. Please choose a different one.
         </div>
       </div>";
     }
-    
 }
 ?>

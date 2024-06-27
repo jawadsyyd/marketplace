@@ -85,7 +85,7 @@ include('./nav.php');
             </div>
             <div class="col-md-1  text-center">
               <div class="card-body">
-                <a class="btn btn-dark rounded-circle flex align-items-center" href="http://localhost/server/marketplace/pages/deleteProductFromCart.php?deleteid=' . $product['Product_Id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <a class="btn btn-dark rounded-circle flex align-items-center" href="http://localhost/server/marketplace/pages/deleteProductFromCart.php?deleteid=' . $product['Product_Id'] . '&customerId=' . $idOfCustomer['Customer_Id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
 </svg></a>
               </div>
@@ -107,22 +107,21 @@ include('./nav.php');
               <strong>Total:</strong>
               <span id="total">
 
-              <?php
-              $getId = $database->prepare("SELECT Customer_Id FROM users WHERE Username = :Username");
-              $getId->bindParam("Username", $customerName);
-              $getId->execute();
-              $customerid = $getId->fetch();
-              $total = $database->prepare("SELECT SUM(Price) FROM orders WHERE Customer_Id = :Customer_Id");
-              $total->bindParam("Customer_Id",$customerid['Customer_Id']);
-              $total->execute();
-              $totalPrice = $total->fetchColumn(); 
-              if($totalPrice){
-                print_r("$ ".$totalPrice);
-              }
-              else{
-                print_r("$ 0.00");
-              }
-              ?>
+                <?php
+                $getId = $database->prepare("SELECT Customer_Id FROM users WHERE Username = :Username");
+                $getId->bindParam("Username", $customerName);
+                $getId->execute();
+                $customerid = $getId->fetch();
+                $total = $database->prepare("SELECT SUM(Price) FROM orders WHERE Customer_Id = :Customer_Id");
+                $total->bindParam("Customer_Id", $customerid['Customer_Id']);
+                $total->execute();
+                $totalPrice = $total->fetchColumn();
+                if ($totalPrice) {
+                  print_r("$ " . $totalPrice);
+                } else {
+                  print_r("$ 0.00");
+                }
+                ?>
 
               </span>
             </li>
