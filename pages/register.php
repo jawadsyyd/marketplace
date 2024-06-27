@@ -88,15 +88,7 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
                     <button type="submit" name="submit" class="btn px-4 py-2" id="btnSignUp">Sign in</button>
                     <a href="login.php" class="px-2" style="text-decoration: none;color:#1D3557">Already Have An Account?</a>
                 </div>
-            </form>
-        </section>
-    </div>
-    <script src="../js/registration.js"></script>
-</body>
-
-</html>
-
-<?php
+                <?php
 if (isset($_POST['submit'])) {
 
     $fName = $_POST['fname'];
@@ -160,16 +152,15 @@ if (isset($_POST['submit'])) {
                 . '<div>verification link</div>' . '<a href="http://localhost/server/marketplace/active.php?code=' . $securityCode . '">' . 'http://localhost/server/marketplace/active.php' . '?code=' . $securityCode . '</a>';
             $mail->setFrom('bishopstore124@gmail.com', 'Bishop Store');
             $mail->send();
-            echo "<div class='container' style='margin-top: -7rem;'>
+            echo "<div class='container mt-5' style='margin-top: -7rem;'>
         <div class='alert alert-info alert-dismissible fade show' role='alert'>
             <strong>Verification Code Sent!</strong> Please check the verification code sent to <strong>" . $_POST['email'] . "</strong>.
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>
       </div>";
-        } else {
         }
     } else {
-        echo "<div class='container' style='margin-top: -7rem;'>
+        echo "<div class='container mt-5' style='margin-top: -7rem;'>
         <div class='alert alert-warning' role='alert'>
             Email is already in use. Please choose a different one.
         </div>
@@ -177,3 +168,10 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+            </form>
+        </section>
+    </div>
+    <script src="../js/registration.js"></script>
+</body>
+
+</html>
