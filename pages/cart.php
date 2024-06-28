@@ -157,7 +157,7 @@ include('./nav.php');
           </ul>
         </div>
         <br>
-        <button type="button" class="btn w-100" id="checkout-btn">Proceed to Checkout</button>
+        <button type="button" name="submit" class="btn w-100" id="checkout-btn"><a class="text-light" style="text-decoration: none;" href="http://localhost/server/marketplace/pages/CreditCard.php">Proceed to Checkout</a></button>
       </div>
     </div>
     <!-- END CAT SUMMARY -->

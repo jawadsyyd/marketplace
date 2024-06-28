@@ -102,7 +102,7 @@ if (isset($_POST['submit'])) {
             $insertPromotionProduct->execute();
         }
 
-        // header("Location: http://localhost/server/marketplace/pages/promotionDetails.php");
+        header("Location: http://localhost/server/marketplace/pages/promotionDetails.php");
     } else {
         echo "<p class='text-center text-danger'>Please select a promotion and products!</p>";
     }
