@@ -19,7 +19,7 @@
             <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">
                     <li class="nav-item" style="color: #457B9D;">
-                        <a class="nav-link active" aria-current="page" href="#">Order History</a>
+                        <a class="nav-link active" aria-current="page" href="http://localhost/server/marketplace/pages/cart.php">Order History</a>
                     </li>
                     <li class="nav-item" style="color: #457B9D;">
                         <a class="nav-link" href="#">My Account</a>
@@ -32,13 +32,13 @@
             <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">
                     <li class="nav-item" style="color: #457B9D;">
-                        <a class="nav-link active" aria-current="page" href="#AllCategories">Shop</a>
+                        <a class="nav-link active" aria-current="page" href="http://localhost/server/marketplace/pages/showProducts.php">Shop</a>
                     </li>
                     <li class="nav-item" style="color: #457B9D;">
-                        <a class="nav-link" href="#">Shopping Cart</a>
+                        <a class="nav-link" href="http://localhost/server/marketplace/pages/cart.php">Shopping Cart</a>
                     </li>
                     <li class="nav-item" style="color: #457B9D;">
-                        <a class="nav-link" href="#">Check Out</a>
+                        <a class="nav-link" href="http://localhost/server/marketplace/pages/cart.php">Check Out</a>
                     </li>
                 </ul>
             </div>

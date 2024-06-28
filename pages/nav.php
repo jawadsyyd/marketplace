@@ -29,7 +29,7 @@
     ?>
     <nav class="navbar navbar-expand-lg bg-white-tertiary py-4" style="background-color: #F1FAEE;">
         <div class="container-fluid">
-            <img src="https://placehold.co/600x400/black/white" class="img-fluid" alt="..." width="96" height="88">
+            <h1 class="ps-3"><i style="color: #E63946;">Bi</i><span style="color: #1D3557;">Shop</span></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="black" class="bi bi-list" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
@@ -37,18 +37,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <div class="col-9">
-                    <ul class="navbar-nav d-flex justify-content-around">
+                    <ul class="navbar-nav d-flex justify-content-center">
                         <li class="nav-item ms-xl-5 ps-xl-5 fs-5">
-                            <a class="nav-link" aria-current="page" href="http://localhost/server/marketplace/pages/home.php">Home</a>
+                            <a class="nav-link link-dark" aria-current="page" href="http://localhost/server/marketplace/pages/home.php">Home</a>
                         </li>
                         <li class="nav-item ms-xl-5 fs-5">
-                            <a class="nav-link" href="http://localhost/server/marketplace/pages/showProducts.php">Shop</a>
-                        </li>
-                        <li class="nav-item ms-xl-5 fs-5">
-                            <a class="nav-link" href="http://localhost/server/marketplace/pages/promotionShopping.php">Promotions</a>
+                            <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/showProducts.php">Shop</a>
                         </li>
                         <li class="nav-item ms-xl-5 d-xl-none fs-5">
-                            <a class="nav-link" href="http://localhost/server/marketplace/pages/cart.php">Cart</a>
+                            <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/cart.php">Cart</a>
                         </li>
                         <!-- DROPDOWN -->
                         <?php if ($is_admin) : ?>
@@ -73,10 +70,10 @@
                         <?php endif; ?>
                         <!-- DROPDOWN -->
                         <li class="nav-item ms-xl-5 fs-5">
-                            <a class="nav-link" href="http://localhost/server/marketplace/pages/home.php#footer">Contact</a>
+                            <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/home.php#footer">Contact</a>
                         </li>
                         <li class="nav-item ms-xl-5 fs-5  d-block d-xl-none">
-                            <a class="nav-link" href="http://localhost/server/marketplace/pages/logout.php">Log Out</a>
+                            <a class="nav-link link-dark" href="http://localhost/server/marketplace/pages/logout.php">Log Out</a>
                         </li>
                     </ul>
                 </div>
