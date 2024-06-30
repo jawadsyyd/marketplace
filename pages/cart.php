@@ -146,18 +146,35 @@ include('./nav.php');
                 $total->execute();
                 $totalPrice = $total->fetchColumn();
                 if ($totalPrice) {
-                  echo '<span style="color: #1D3557;">$ ' . $totalPrice . '</span>';
+                  echo '<span style="color: #1D3557;">' . $totalPrice . ' $</span>';
                 } else {
-                  echo '<span style="color: #1D3557;">$ 0.00</span>';
+                  echo '<span style="color: #1D3557;">0.00 $</span>';
                 }
                 ?>
 
               </span>
             </li>
+            <li class="list-group-item d-flex justify-content-between fw-bold text-primary">
+              <strong style="color: #1D3557;">TVA:</strong>
+              <span id="total" style="color: #1D3557;">11 %</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between fw-bold text-primary">
+              <strong style="color: #1D3557;">Final Price:</strong>
+              <span id="total" style="color: #1D3557;">
+                <?php
+                $finalPrice = $totalPrice + ($totalPrice * 11 / 100);
+                if ($finalPrice) {
+                  echo $finalPrice . ' $';
+                } else {
+                  echo '0.00 $';
+                }
+                ?>
+              </span>
+            </li>
           </ul>
         </div>
         <br>
-        <button type="button" name="submit" class="btn w-100" id="checkout-btn"><a class="text-light" style="text-decoration: none;" href="http://localhost/server/marketplace/pages/CreditCard.php">Proceed to Checkout</a></button>
+        <button type="button" name="submit" class="btn w-100" id="checkout-btn"><a class="text-light" style="text-decoration: none;" href="http://localhost/server/marketplace/pages/checkCredit.php">Proceed to Checkout</a></button>
       </div>
     </div>
     <!-- END CAT SUMMARY -->

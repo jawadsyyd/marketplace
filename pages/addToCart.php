@@ -40,7 +40,7 @@ if (isset($_GET['id']) && isset($_GET['username']) && isset($_GET['havePromotion
             $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
             $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
             if ($addToCard->execute()) {
-                header("location:http://localhost/server/marketplace/pages/cart.php");
+                header("location:http://localhost/server/marketplace/pages/showProducts.php");
             }
         }
     } else {
@@ -83,7 +83,7 @@ if (isset($_GET['id']) && isset($_GET['username']) && isset($_GET['havePromotion
             $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
             $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
             if ($addToCard->execute()) {
-                header("location:http://localhost/server/marketplace/pages/cart.php");
+                header("location:http://localhost/server/marketplace/pages/showProducts.php");
             }
         }
     }
