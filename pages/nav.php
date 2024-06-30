@@ -64,6 +64,8 @@
                                         <li><a class="dropdown-item" href="http://localhost/server/marketplace/pages/promotionDetails.php">Promotion
                                                 Details</a>
                                         </li>
+                                        <li><a class="dropdown-item" href="http://localhost/server/marketplace/pages/admins.php">Admins</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
