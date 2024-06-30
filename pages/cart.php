@@ -74,11 +74,34 @@ include('./nav.php');
       // DISPLAY PRODUCTS IN CARD STRAT
       foreach ($products as $product) {
         // START Price
-        $getPrice = $database->prepare("SELECT Price FROM orders WHERE Customer_Id = :Customer_Id AND Product_Id = :Product_Id");
+
+        $checkPromotion = $database->prepare('SELECT Product_Id FROM product_promotion WHERE Product_Id = :Product_Id');
+        $checkPromotion->bindParam('Product_Id', $product['Product_Id']);
+        $checkPromotion->execute();
+        $havePromotion = $checkPromotion->fetchColumn();
+
+        if ($havePromotion) {
+          $getPriceAfterPromotion = $database->prepare('SELECT P.Price, promotions.Discount_Value 
+          FROM products P
+          INNER JOIN product_promotion PP ON P.Product_Id = PP.Product_Id
+          INNER JOIN promotions ON PP.Promotion_Id = promotions.Promotion_Id WHERE P.Product_Id = :Product_Id');
+          $getPriceAfterPromotion->bindParam('Product_Id', $product['Product_Id']);
+          $getPriceAfterPromotion->execute();
+          $priceAfterPromotion = $getPriceAfterPromotion->fetch();
+          $priceINeed = $priceAfterPromotion['Price'] - ($priceAfterPromotion['Price'] * $priceAfterPromotion['Discount_Value'] / 100);
+        } else {
+          $getPriceBeforePromotion = $database->prepare("SELECT Price FROM products WHERE Product_Id = :Product_Id");
+          $getPriceBeforePromotion->bindParam('Product_Id', $product['Product_Id']);
+          $getPriceBeforePromotion->execute();
+          $priceBeforePromotion = $getPriceBeforePromotion->fetchColumn();
+          $priceINeed = $priceBeforePromotion;
+        }
+
+        $getPrice = $database->prepare("SELECT Price,Qty FROM orders WHERE Customer_Id = :Customer_Id AND Product_Id = :Product_Id");
         $getPrice->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
         $getPrice->bindParam("Product_Id", $product['Product_Id']);
         $getPrice->execute();
-        $price = $getPrice->fetchColumn();
+        $price = $getPrice->fetch();
 
         // END Price
         $productDetails = $database->prepare("SELECT * FROM Products WHERE Product_Id = :Product_Id");
@@ -91,7 +114,7 @@ include('./nav.php');
               <div class="col-md-2">
                 <img src="../products_images/' . $details['Image'] . '" class="img-fluid rounded-start" alt="...">
               </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="card-body">
                 <h5 class="card-title">' . $details['Name'] . '</h5>
                 <p class="card-text">' . $details['Description'] . '</p>
@@ -99,17 +122,19 @@ include('./nav.php');
             </div>
             <div class="col-md-2  text-center">
               <div class="card-body">
-                <p class="card-text">$<b>' . $price . '</b></p>
+                <p class="card-text">$<b>' . $priceINeed . '</b></p>
               </div>
             </div>
-            <div class="col-md-2 text-center">
-              <div class="card-body">
-                <p class="card-text">' . $details['Qty_In_Stock'] . '</p>
+            <div class="col-md-1 text-center d-flex align-items-center">
+              <div class="card-body d-flex align-items-center  justify-content-center bg-dark text-light rounded">
+                <button class="btn text-light"><a href="http://localhost/server/marketplace/pages/decrease.php?productId=' . $details['Product_Id'] . '" class="link-light link-underline-opacity-0">-</a></button>
+                <span class="card-text px-2 fw-semibold">' . $price['Qty'] . '</span>
+                <button class="btn text-light"><a href="http://localhost/server/marketplace/pages/increase.php?productId=' . $details['Product_Id'] . '" class="link-light link-underline-opacity-0">+</a></button>
               </div>
             </div>
             <div class="col-md-2  text-center">
               <div class="card-body">
-                <p class="card-text">$<b>' . $price . '</b></p>
+                <p class="card-text">$<b>' . $price['Price'] . '</b></p>
               </div>
             </div>
             <div class="col-md-1  text-center">
