@@ -34,6 +34,40 @@ include('./nav.php');
         #btnShowMore:hover {
             background-color: #E63946;
         }
+
+        .feedback-card {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-profile {
+            margin-bottom: 10px;
+        }
+
+        .user-profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .feedback-title {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .feedback-description {
+            margin-top: 5px;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -163,16 +197,94 @@ include('./nav.php');
 
     <!-- END Product -->
 
-    <?php
-    include("./footer.php");
-    ?>
-    <script>
-        function ShowMore() {
-            window.location.href = 'http://localhost/server/marketplace/pages/showProducts.php';
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <!--  -->
+    <div id="carouselExampleIndicators" class="carousel slide mt-4">
+        <div class="carousel-inner">
+            <?php
+            $getFeedback = $database->prepare('SELECT * FROM feedback LIMIT 1');
+            $getFeedback->execute();
+            $feedbackDetails = $getFeedback->fetchAll();
+            foreach ($feedbackDetails as $details) {
+                $getCustomerDetails = $database->prepare('SELECT * FROM users WHERE Customer_Id = :Customer_Id');
+                $id =  $details['Customer_Id'];
+                $getCustomerDetails->bindParam('Customer_Id', $id);
+                $getCustomerDetails->execute();
+                $customerDetails = $getCustomerDetails->fetchAll();
+                foreach ($customerDetails as $cDetails) {
+                    echo '
+                <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="feedback-card">
+                            <div class="user-profile">
+                                <img src="https://placehold.co/50" alt="User Profile Image">
+                                <span class="username">' . $cDetails['Username'] . '</span>
+                            </div>
+                            <div class="feedback-title">' . $details['Title'] . '</div>
+                            <div class="feedback-description">
+                                ' . $details['Text'] . '
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                ';
+                }
+            }
+            ?>
+            <?php
+            $getFeedback = $database->prepare('SELECT * FROM feedback LIMIT 5');
+            $getFeedback->execute();
+            $feedbackDetails = $getFeedback->fetchAll();
+            foreach ($feedbackDetails as $details) {
+                $getCustomerDetails = $database->prepare('SELECT * FROM users WHERE Customer_Id = :Customer_Id');
+                $id =  $details['Customer_Id'];
+                $getCustomerDetails->bindParam('Customer_Id', $id);
+                $getCustomerDetails->execute();
+                $customerDetails = $getCustomerDetails->fetchAll();
+                foreach ($customerDetails as $cDetails) {
+                    echo '
+                <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="feedback-card">
+                            <div class="user-profile">
+                                <img src="https://placehold.co/50" alt="User Profile Image">
+                                <span class="username">' . $cDetails['Username'] . '</span>
+                            </div>
+                            <div class="feedback-title">' . $details['Title'] . '</div>
+                            <div class="feedback-description">
+                                ' . $details['Text'] . '
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                ';
+                }
+            }
+            ?>
+            <!-- Navigation buttons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!--  -->
+        <?php
+        include("./footer.php");
+        ?>
+        <script>
+            function ShowMore() {
+                window.location.href = 'http://localhost/server/marketplace/pages/showProducts.php';
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
