@@ -76,7 +76,7 @@
             $mail->Subject = "Forget Password";
             $mail->Body = '<h1>Reset Password</h1>'
                 . '<div>reset link</div>' . '<a href="http://localhost/server/marketplace/reset.php?email=' . $_POST['email'] . '&code=' . $user->Security_Code . '  ">' . 'http://localhost/server/marketplace/reset.php?email=' . $_POST['email'] . '&code=' . $user->Security_Code . '</a>';
-            $mail->setFrom('bishopstore124@gmail.com', 'Bishop Store');
+            $mail->setFrom('tradtechstore@gmail.com', 'TradTech Store');
             $mail->send();
             header("Location:https://mail.google.com/");
         } else {

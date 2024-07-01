@@ -100,7 +100,7 @@ if (isset($_POST["submit"]) && isset($_GET['customerName'])) {
         $mail->addAddress($customerEmail);
         $mail->Subject = 'Order Confirmation';
         $mail->Body    = 'Thank you for your order, !<br><br>Your address: ' . $customerEmail . '<br>Your order price:$ ' . $withTVA . '<br><br>We will contact you soon for further details.';
-        $mail->setFrom('bishopstore124@gmail.com', 'Bishop Store');
+        $mail->setFrom('tradtechstore@gmail.com', 'TradTech Store');
         $mail->send();
         header("Location: http://localhost/server/marketplace/pages/thanks.php");
       }

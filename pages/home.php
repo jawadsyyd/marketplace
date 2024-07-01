@@ -40,61 +40,31 @@ include('./nav.php');
 <body>
     <!-- START SLIDER -->
 
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="5000">
-                <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
-                <div class="position-absolute end-50 top-50 z-1001">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h3 class="display-6" style="color: #457B9D;">Lorem, ipsum dolor.</h3>
-                            <h1 class="display-5  d-none d-md-block d-xl-block" style="color: #A8DADC;">Lorem ipsum dolor sit.</h1>
-                            <button class="btn btn-outline-danger rounded-pill text-uppercase btn-sm fw-medium">VIEW
-                                COLLECTION</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item" data-bs-interval="2500">
-                <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
-                <div class="position-absolute end-50 top-50 z-1001 flex">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h3 class="display-6" style="color: #457B9D;">Lorem, ipsum dolor.</h3>
-                            <h1 class="display-5  d-none d-md-block d-xl-block" style="color: #A8DADC;">Lorem ipsum dolor sit.</h1>
-                            <button class="btn btn-outline-danger rounded-pill text-uppercase btn-sm fw-medium">VIEW COLLECTION</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="carousel-item active">
+                <img src="../images/mobilePhones.jpeg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://placehold.co/600x400/black/white" class="d-block w-100 position-relative" alt="...">
-                <div class="position-absolute end-50 top-50 z-1001 flex">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h3 class="display-6" style="color: #457B9D;">Lorem, ipsum dolor.</h3>
-                            <h1 class="display-5  d-none d-md-block d-xl-block" style="color: #A8DADC;">Lorem ipsum dolor sit.</h1>
-                            <button class="btn btn-outline-danger rounded-pill text-uppercase btn-sm fw-medium">VIEW COLLECTION</button>
-                        </div>
-                    </div>
-                </div>
+                <img src="../images/tabletsAndEReaders.jpeg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/laptopsAndComputers.jpeg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/wearables.jpeg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/audio.jpeg" class="d-block w-100" alt="...">
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 
     <!-- END SLIDER -->
 
     <!-- START CATEGORY -->
 
-    <div class="container mt-5">
+    <div class="container mt-2">
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
                 <button class="btn rounded-circle mb-3 p-3" id="btnCategory"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F1FAEE" class="bi bi-truck" viewBox="0 0 16 16">
@@ -123,7 +93,7 @@ include('./nav.php');
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                         <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
                     </svg></button>
-                <h5 class="text-uppercase" id="categoryTitle">authenticity 100% guaranteed</h5>
+                <h5 class="text-uppercase" id="categoryTitle">authenticity 100%</h5>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
             </div>
         </div>
@@ -132,17 +102,17 @@ include('./nav.php');
     <!-- END CATEGORY -->
 
     <!-- START BANNER -->
-    <div class="container my-5" id="promotion">
+    <div class="container mb-3" id="promotion">
         <div class="row">
             <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
-                <img src="https://placehold.co/558x200/white/black" alt="" class="img-fluid">
+                <img src="../images/banner.jpeg" alt="" class="img-fluid">
                 <div class="position-absolute start-50 bottom-0 mb-5 text-center">
                     <h5 class="d-none d-xl-block" style="color: #1D3557;">Lorem, ipsum dolor.</h5>
                     <p class="d-none d-xl-block" style="color: #E63946;">Lorem, ipsum dolor.</p>
                 </div>
             </div>
             <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
-                <img src="https://placehold.co/558x200/white/black" alt="" class="img-fluid">
+                <img src="../images/banner.jpeg" alt="" class="img-fluid">
                 <div class="position-absolute start-50 bottom-0 mb-5 text-center">
                     <h5 class="d-none d-xl-block" style="color: #1D3557;">Lorem, ipsum dolor.</h5>
                     <p class="d-none d-xl-block" style="color: #E63946;">Lorem, ipsum dolor.</p>

@@ -199,7 +199,8 @@ include('./nav.php');
           </ul>
         </div>
         <br>
-        <button type="button" name="submit" class="btn w-100" id="checkout-btn"><a class="text-light" style="text-decoration: none;" href="http://localhost/server/marketplace/pages/checkCredit.php">Proceed to Checkout</a></button>
+        <button type="button" name="submit" class="btn w-100 my-1" style="background-color:#1D3557;"><a class="text-light" style="text-decoration: none;" href="http://localhost/server/marketplace/pages/deleteOrder.php">Clear Cart</a></button>
+        <button type="button" name="submit" class="btn w-100 my-1" id="checkout-btn"><a class="text-light" style="text-decoration: none;" href="http://localhost/server/marketplace/pages/checkCredit.php">Proceed to Checkout</a></button>
       </div>
     </div>
     <!-- END CAT SUMMARY -->

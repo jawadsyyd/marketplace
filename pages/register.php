@@ -89,85 +89,85 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
                     <a href="login.php" class="px-2" style="text-decoration: none;color:#1D3557">Already Have An Account?</a>
                 </div>
                 <?php
-if (isset($_POST['submit'])) {
+                if (isset($_POST['submit'])) {
 
-    $fName = $_POST['fname'];
-    $lName = $_POST['lname'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
+                    $fName = $_POST['fname'];
+                    $lName = $_POST['lname'];
+                    $phone = $_POST['phone'];
+                    $email = $_POST['email'];
+                    $address = $_POST['address'];
 
-    $emailCheck = $database->prepare('SELECT Email FROM users WHERE Email = :email');
-    $emailCheck->bindParam(':email', $_POST['email']);
-    $emailCheck->execute();
+                    $emailCheck = $database->prepare('SELECT Email FROM users WHERE Email = :email');
+                    $emailCheck->bindParam(':email', $_POST['email']);
+                    $emailCheck->execute();
 
-    if ($emailCheck->rowCount() === 0) {
-        if ($_POST['role'] === 'Customer') {
-            $insert = $database->prepare('INSERT INTO 
+                    if ($emailCheck->rowCount() === 0) {
+                        if ($_POST['role'] === 'Customer') {
+                            $insert = $database->prepare('INSERT INTO 
             customers(FName,LName,PhoneNumber,Email,Address)
             VALUES(:FName,	:LName,	:PhoneNumber,:Email	,:Address)
             ');
-            $insert->bindParam('FName', $fName);
-            $insert->bindParam('LName', $lName);
-            $insert->bindParam('PhoneNumber', $phone);
-            $insert->bindParam('Email', $email);
-            $insert->bindParam('Address', $address);
-            $insert->execute();
+                            $insert->bindParam('FName', $fName);
+                            $insert->bindParam('LName', $lName);
+                            $insert->bindParam('PhoneNumber', $phone);
+                            $insert->bindParam('Email', $email);
+                            $insert->bindParam('Address', $address);
+                            $insert->execute();
 
-            $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
-            $getId->bindParam("EMAIL", $_POST['email']);
-            $getId->execute();
+                            $getId = $database->prepare('SELECT Customer_Id FROM customers WHERE Email = :EMAIL');
+                            $getId->bindParam("EMAIL", $_POST['email']);
+                            $getId->execute();
 
-            $customerId = $getId->fetch(PDO::FETCH_ASSOC);
+                            $customerId = $getId->fetch(PDO::FETCH_ASSOC);
 
-            $cid = $customerId["Customer_Id"];
+                            $cid = $customerId["Customer_Id"];
 
-            // sendEmail_verification("$fName", "$email");
-        }
+                            // sendEmail_verification("$fName", "$email");
+                        }
 
-        $password = $_POST['password'];
-        $hashedPassword = md5($password);
+                        $password = $_POST['password'];
+                        $hashedPassword = md5($password);
 
-        $insertUser = $database->prepare('INSERT INTO 
+                        $insertUser = $database->prepare('INSERT INTO 
         users(Username,Password,UserType,FName,LName,Email,Security_Code,Customer_Id)
         VALUES(:username,:password,:role,:fname,:lname,:email,:Security_Code,:customerId)
         ');
-        $insertUser->bindParam('username', $_POST['username']);
-        $insertUser->bindParam('password', $hashedPassword);
-        $insertUser->bindParam('role', $_POST['role']);
-        $insertUser->bindParam('fname', $_POST['fname']);
-        $insertUser->bindParam('lname', $_POST['lname']);
-        $insertUser->bindParam('email', $_POST['email']);
-        // SECURITY CODE [START]
-        $securityCode = md5(date("h:i:s"));
-        $insertUser->bindParam('Security_Code', $securityCode);
-        // SECURITY CODE [END]
-        $insertUser->bindParam('customerId', $cid);
+                        $insertUser->bindParam('username', $_POST['username']);
+                        $insertUser->bindParam('password', $hashedPassword);
+                        $insertUser->bindParam('role', $_POST['role']);
+                        $insertUser->bindParam('fname', $_POST['fname']);
+                        $insertUser->bindParam('lname', $_POST['lname']);
+                        $insertUser->bindParam('email', $_POST['email']);
+                        // SECURITY CODE [START]
+                        $securityCode = md5(date("h:i:s"));
+                        $insertUser->bindParam('Security_Code', $securityCode);
+                        // SECURITY CODE [END]
+                        $insertUser->bindParam('customerId', $cid);
 
-        if ($insertUser->execute()) {
-            require_once "../mail.php";
-            $mail->addAddress($_POST['email']);
-            $mail->Subject = "Verification";
-            $mail->Body = '<h1>Thank you for your registration</h1>'
-                . '<div>verification link</div>' . '<a href="http://localhost/server/marketplace/active.php?code=' . $securityCode . '">' . 'http://localhost/server/marketplace/active.php' . '?code=' . $securityCode . '</a>';
-            $mail->setFrom('bishopstore124@gmail.com', 'Bishop Store');
-            $mail->send();
-            echo "<div class='container mt-5' style='margin-top: -7rem;'>
+                        if ($insertUser->execute()) {
+                            require_once "../mail.php";
+                            $mail->addAddress($_POST['email']);
+                            $mail->Subject = "Verification";
+                            $mail->Body = '<h1>Thank you for your registration</h1>'
+                                . '<div>verification link</div>' . '<a href="http://localhost/server/marketplace/active.php?code=' . $securityCode . '">' . 'http://localhost/server/marketplace/active.php' . '?code=' . $securityCode . '</a>';
+                            $mail->setFrom('tradtechstore@gmail.com', 'TradTech Store');
+                            $mail->send();
+                            echo "<div class='container mt-5' style='margin-top: -7rem;'>
         <div class='alert alert-info alert-dismissible fade show' role='alert'>
             <strong>Verification Code Sent!</strong> Please check the verification code sent to <strong>" . $_POST['email'] . "</strong>.
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>
       </div>";
-        }
-    } else {
-        echo "<div class='container mt-5' style='margin-top: -7rem;'>
+                        }
+                    } else {
+                        echo "<div class='container mt-5' style='margin-top: -7rem;'>
         <div class='alert alert-warning' role='alert'>
             Email is already in use. Please choose a different one.
         </div>
       </div>";
-    }
-}
-?>
+                    }
+                }
+                ?>
             </form>
         </section>
     </div>

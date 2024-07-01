@@ -11,16 +11,16 @@ require 'mailer/autoload.php';
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer();
 
-    //Server settings
-    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-    $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'bishopstore124@gmail.com';                     // SMTP username
-    $mail->Password   = 'gzca btum yrxq uhze';                               // SMTP password
-    $mail->SMTPSecure = 'ssl';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+//Server settings
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+$mail->isSMTP();                                            // Send using SMTP
+$mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+$mail->Username   = 'tradtechstore@gmail.com';                     // SMTP username
+$mail->Password   = 'oled bnvh lfrg fata';                               // SMTP password
+$mail->SMTPSecure = 'ssl';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+$mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
 // Content
-$mail->isHTML(true);  
+$mail->isHTML(true);
 $mail->CharSet = "UTF-8";
