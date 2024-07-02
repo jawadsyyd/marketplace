@@ -103,10 +103,12 @@ if (!empty($_SESSION['username'])) {
                 "You have provided feedback before."
               </div>';
             } else {
-                $setFeddback = $database->prepare('INSERT INTO feedback(Title,Text,Customer_Id) 
-        VALUES(:Title,:Text,:Customer_Id)');
+                $currentDate = date('Y-m-d');
+                $setFeddback = $database->prepare('INSERT INTO feedback(Title,Text,Date,Customer_Id) 
+        VALUES(:Title,:Text,:Date,:Customer_Id)');
                 $setFeddback->bindParam('Title', $_POST['title']);
                 $setFeddback->bindParam('Text', $_POST['text']);
+                $setFeddback->bindParam('Date', $currentDate);
                 $setFeddback->bindParam('Customer_Id', $cId);
                 if ($setFeddback->execute()) {
                     header("Location:http://localhost/server/marketplace/pages/home.php");

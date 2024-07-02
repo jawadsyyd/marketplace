@@ -201,38 +201,7 @@ include('./nav.php');
     <div id="carouselExampleIndicators" class="carousel slide mt-4">
         <div class="carousel-inner">
             <?php
-            $getFeedback = $database->prepare('SELECT * FROM feedback LIMIT 1');
-            $getFeedback->execute();
-            $feedbackDetails = $getFeedback->fetchAll();
-            foreach ($feedbackDetails as $details) {
-                $getCustomerDetails = $database->prepare('SELECT * FROM users WHERE Customer_Id = :Customer_Id');
-                $id =  $details['Customer_Id'];
-                $getCustomerDetails->bindParam('Customer_Id', $id);
-                $getCustomerDetails->execute();
-                $customerDetails = $getCustomerDetails->fetchAll();
-                foreach ($customerDetails as $cDetails) {
-                    echo '
-                <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <div class="feedback-card">
-                            <div class="user-profile">
-                                <img src="https://placehold.co/50" alt="User Profile Image">
-                                <span class="username">' . $cDetails['Username'] . '</span>
-                            </div>
-                            <div class="feedback-title">' . $details['Title'] . '</div>
-                            <div class="feedback-description">
-                                ' . $details['Text'] . '
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                ';
-                }
-            }
-            ?>
-            <?php
+            $isFirstItem = true;
             $getFeedback = $database->prepare('SELECT * FROM feedback LIMIT 5');
             $getFeedback->execute();
             $feedbackDetails = $getFeedback->fetchAll();
@@ -243,8 +212,9 @@ include('./nav.php');
                 $getCustomerDetails->execute();
                 $customerDetails = $getCustomerDetails->fetchAll();
                 foreach ($customerDetails as $cDetails) {
-                    echo '
-                <div class="carousel-item">
+                    if($isFirstItem){
+                        echo '
+                <div class="carousel-item active">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="feedback-card">
@@ -252,6 +222,7 @@ include('./nav.php');
                                 <img src="https://placehold.co/50" alt="User Profile Image">
                                 <span class="username">' . $cDetails['Username'] . '</span>
                             </div>
+                            <div class="feedback-date">' . $details['Date'] . '</div>
                             <div class="feedback-title">' . $details['Title'] . '</div>
                             <div class="feedback-description">
                                 ' . $details['Text'] . '
@@ -261,6 +232,28 @@ include('./nav.php');
                 </div>
             </div>
                 ';
+                $isFirstItem = false;
+                    } else {
+                        echo '
+                <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="feedback-card">
+                            <div class="user-profile">
+                                <img src="https://placehold.co/50" alt="User Profile Image">
+                                <span class="username">' . $cDetails['Username'] . '</span>
+                            </div>
+                            <div class="feedback-date">' . $details['Date'] . '</div>
+                            <div class="feedback-title">' . $details['Title'] . '</div>
+                            <div class="feedback-description">
+                                ' . $details['Text'] . '
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                ';
+                    }
                 }
             }
             ?>
@@ -274,6 +267,7 @@ include('./nav.php');
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+    </div>
         <!--  -->
         <?php
         include("./footer.php");
