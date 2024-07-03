@@ -49,7 +49,7 @@
     <div class="container text-center d-flex align-items-center justify-content-center vh-100">
         <div class="row py-5 rounded">
             <div class="col-12">
-                <h1>Welcome To <span id="logo"><strong><i>Bi</i>shop</strong></span></h1>
+                <h1>Welcome To <span id="logo"><strong><i>TradTech</i></strong></span></h1>
             </div>
             <div class="col-12">
                 <h4>Your Second Home</h4>

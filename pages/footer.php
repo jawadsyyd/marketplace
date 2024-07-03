@@ -12,9 +12,9 @@
     <div class="container-fluid pt-5 p-3" style="background-color: #F1FAEE;" id="footer">
         <div class="row d-block d-md-flex  align-items-center justify-content-around">
             <div class="col-12 col-md-3 d-flex d-sm-block align-items-center justify-content-center text-center"><a class="navbar-brand" href="#">
-                    <h1><i style="color: #E63946;">Bi</i><span style="color: #1D3557;">Shop</span></h1>
+                    <h1><i style="color: #E63946;">TradTech</i><span style="color: #1D3557;"> Store</span></h1>
                 </a> <br>
-                <p class="d-none d-sm-flex" style="color: #1D3557;">Lorem ipsum dolor Lorem, ipsum dolor.</p>
+                <p class="d-none d-sm-flex ms-3" style="color: #1D3557;">Your friendly neighborhood store.</p>
             </div>
             <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">

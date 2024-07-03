@@ -105,14 +105,14 @@ include('./nav.php');
                         <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                     </svg></button>
                 <h5 class="text-uppercase" id="categoryTitle">Free delivery from S 250</h5>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
+                <p></p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
                 <button class="btn rounded-circle mb-3 p-3" id="btnCategory"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F1FAEE" class="bi bi-wallet2" viewBox="0 0 16 16">
                         <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" />
                     </svg></button>
                 <h5 class="text-uppercase" id="categoryTitle">money back guaranteed</h5>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
+                <p></p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
                 <button class="btn rounded-circle mb-3 p-3" id="btnCategory"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F1FAEE" class="bi bi-shield-lock" viewBox="0 0 16 16">
@@ -120,7 +120,7 @@ include('./nav.php');
                         <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415" />
                     </svg></button>
                 <h5 class="text-uppercase" id="categoryTitle">secure payment</h5>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
+                <p></p>
             </div>
             <div class="col-xxl-3 col-xl-3 col-md-6 col-sm-6 col-12 text-center">
                 <button class="btn rounded-circle mb-3 p-3" id="btnCategory"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F1FAEE" class="bi bi-check-square" viewBox="0 0 16 16">
@@ -128,7 +128,7 @@ include('./nav.php');
                         <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
                     </svg></button>
                 <h5 class="text-uppercase" id="categoryTitle">authenticity 100%</h5>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique, id?</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -140,17 +140,9 @@ include('./nav.php');
         <div class="row">
             <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
                 <img src="../images/banner.jpeg" alt="" class="img-fluid">
-                <div class="position-absolute start-50 bottom-0 mb-5 text-center">
-                    <h5 class="d-none d-xl-block" style="color: #1D3557;">Lorem, ipsum dolor.</h5>
-                    <p class="d-none d-xl-block" style="color: #E63946;">Lorem, ipsum dolor.</p>
-                </div>
             </div>
             <div class="col-md-6 col-12 col-sm-12 col-lg-6 col-xl-6 col-xxl-6 position-relative ">
                 <img src="../images/banner.jpeg" alt="" class="img-fluid">
-                <div class="position-absolute start-50 bottom-0 mb-5 text-center">
-                    <h5 class="d-none d-xl-block" style="color: #1D3557;">Lorem, ipsum dolor.</h5>
-                    <p class="d-none d-xl-block" style="color: #E63946;">Lorem, ipsum dolor.</p>
-                </div>
             </div>
         </div>
     </div>
