@@ -18,6 +18,9 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            background-image: url(../images/photo3.jpeg);
+            background-size: cover;
+            background-position: center;
         }
 
         .awm {
@@ -41,12 +44,12 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
 
 <body>
     <div class="awm mx-3">
-        <div class="container text-light py-3 rounded" id="title">
+        <div class="container text-light py-3 rounded-top" id="title">
             <header class="text-center">
                 <h1 class="display-5 text-uppercase"><strong>Register</strong></h1>
             </header>
         </div>
-        <section class="container py-3">
+        <section class="container py-3 rounded-bottom" style="background-color: rgba(241, 250, 238, 0.8);">
             <form class="row g-3" method="POST">
                 <div class="col-6 col-md-3">
                     <label for="inputFname4" class="form-label">First name</label>

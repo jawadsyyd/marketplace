@@ -10,6 +10,9 @@
         body,
         html {
             height: 100%;
+            background-image: url(../images/photo2.jpeg);
+            background-size: cover;
+            background-position: center;
         }
 
         .container {
@@ -20,7 +23,7 @@
         }
 
         .row {
-            background-color: #457B9D;
+            background-color: rgba(69, 123, 157, 0.9);
         }
 
         #btnLogIn {

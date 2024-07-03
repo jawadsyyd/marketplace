@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container-fluid mt-3 pt-5 p-3" style="background-color: #F1FAEE;" id="footer">
+    <div class="container-fluid pt-5 p-3" style="background-color: #F1FAEE;" id="footer">
         <div class="row d-block d-md-flex  align-items-center justify-content-around">
             <div class="col-12 col-md-3 d-flex d-sm-block align-items-center justify-content-center text-center"><a class="navbar-brand" href="#">
                     <h1><i style="color: #E63946;">Bi</i><span style="color: #1D3557;">Shop</span></h1>

@@ -33,6 +33,9 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url(../images/photo1.jpeg);
+            background-size: cover;
+            background-position: center;
         }
 
         .card {
@@ -48,7 +51,7 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
     <div class="container mt-5 py-3">
         <div class="row d-flex justify-content-center">
             <div class="col-md-4 mb-5">
-                <div class="card shadow">
+                <div class="card shadow" style="background-color: rgba(241, 250, 238, 0.8);">
                     <div class="card-header text-center display-5 text-capitalize" id="title">
                         <h3 class="fs-1">Log in</h3>
                     </div>
