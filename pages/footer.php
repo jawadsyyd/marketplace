@@ -14,7 +14,7 @@
             <div class="col-12 col-md-3 d-flex d-sm-block align-items-center justify-content-center text-center"><a class="navbar-brand" href="#">
                     <h1><i style="color: #E63946;">TradTech</i><span style="color: #1D3557;"> Store</span></h1>
                 </a> <br>
-                <p class="d-none d-sm-flex ms-3" style="color: #1D3557;">Your friendly neighborhood store.</p>
+                <p class="d-none d-md-flex ms-3" style="color: #1D3557;">Your friendly neighborhood store.</p>
             </div>
             <div class="col-12 col-md-3 d-flex  align-items-center justify-content-around text-center">
                 <ul class="navbar-nav mt-2">
@@ -63,12 +63,6 @@
                         <a class="nav-link" href="#"><span class="mx-1">WhatsApp</span></a>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <hr>
-        <div class="row mt-2">
-            <div class="col-12 text-center">
-                <p style="color:#1D3557;">All rights reserved - Designed by Bilal & Jawad -2024</p>
             </div>
         </div>
     </div>

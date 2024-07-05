@@ -7,83 +7,91 @@ $database = new PDO('mysql:host=localhost;dbname=bishop;', $username, $password)
 ?>
 <?php
 if (isset($_GET['id']) && isset($_GET['username']) && isset($_GET['havePromotion'])) {
-    if ($_GET['havePromotion'] === 'false') {
-        $getProductId = $database->prepare('SELECT Product_Id,Price FROM Products WHERE Product_Id = :Product_Id');
-        $getProductId->bindParam("Product_Id", $_GET['id']);
-        $getProductId->execute();
-        $productClicked = $getProductId->fetch();
-
-        $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
-        $getCustomerId->bindParam("Username", $_GET['username']);
-        $getCustomerId->execute();
-        $idOfCustomer = $getCustomerId->fetch();
-
-        $checkProduct = $database->prepare("SELECT * FROM orders WHERE Product_Id=:Product_Id AND Customer_Id=:Customer_Id");
-        $checkProduct->bindParam("Product_Id", $productClicked['Product_Id']);
-        $checkProduct->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
-        $checkProduct->execute();
-        $isHere = $checkProduct->fetch();
-
-        if ($isHere) {
-            echo '<div class="container mt-4">
-            <!-- Faild alert -->
-            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-              <strong>Faild!</strong> The product is  already in your cart.
-                <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">Check my Cart</span></a>
-            </div>
-          </div>';
-        } else {
-
-            $addToCard = $database->prepare('INSERT INTO orders(Price,Customer_Id,Product_Id) VALUES(:Price,:Customer_Id,:Product_Id)');
-            // $addToCard->bindParam("Qty",);
-            $addToCard->bindParam("Price", $productClicked['Price']);
-            $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
-            $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
-            if ($addToCard->execute()) {
-                header("location:http://localhost/server/marketplace/pages/showProducts.php");
-            }
-        }
+    $checkUserType = $database->prepare("SELECT UserType FROM users WHERE Username = :Username");
+    $checkUserType->bindParam("Username", $_GET['username']);
+    $checkUserType->execute();
+    $userType = $checkUserType->fetchColumn();
+    if ($userType == 'Admin') {
+        header('location:http://localhost/server/marketplace/pages/showProducts.php');
     } else {
-        $getProductId = $database->prepare('SELECT Product_Id,Price FROM Products WHERE Product_Id = :Product_Id');
-        $getProductId->bindParam("Product_Id", $_GET['id']);
-        $getProductId->execute();
-        $productClicked = $getProductId->fetch();
+        if ($_GET['havePromotion'] === 'false') {
+            $getProductId = $database->prepare('SELECT Product_Id,Price FROM Products WHERE Product_Id = :Product_Id');
+            $getProductId->bindParam("Product_Id", $_GET['id']);
+            $getProductId->execute();
+            $productClicked = $getProductId->fetch();
 
-        $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
-        $getCustomerId->bindParam("Username", $_GET['username']);
-        $getCustomerId->execute();
-        $idOfCustomer = $getCustomerId->fetch();
+            $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
+            $getCustomerId->bindParam("Username", $_GET['username']);
+            $getCustomerId->execute();
+            $idOfCustomer = $getCustomerId->fetch();
 
-        $checkProduct = $database->prepare("SELECT * FROM orders WHERE Product_Id=:Product_Id AND Customer_Id=:Customer_Id");
-        $checkProduct->bindParam("Product_Id", $productClicked['Product_Id']);
-        $checkProduct->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
-        $checkProduct->execute();
-        $isHere = $checkProduct->fetch();
+            $checkProduct = $database->prepare("SELECT * FROM orders WHERE Product_Id=:Product_Id AND Customer_Id=:Customer_Id");
+            $checkProduct->bindParam("Product_Id", $productClicked['Product_Id']);
+            $checkProduct->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+            $checkProduct->execute();
+            $isHere = $checkProduct->fetch();
 
-        if ($isHere) {
-            echo '<div class="container mt-4">
-            <!-- Faild alert -->
-            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-              <strong>Faild!</strong> The product is  already in your cart.
-                <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">Check my Cart</span></a>
-            </div>
-          </div>';
+            if ($isHere) {
+                echo '<div class="container mt-4">
+                <!-- Faild alert -->
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                  <strong>Faild!</strong> The product is  already in your cart.
+                    <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">Check my Cart</span></a>
+                </div>
+              </div>';
+            } else {
+
+                $addToCard = $database->prepare('INSERT INTO orders(Price,Customer_Id,Product_Id) VALUES(:Price,:Customer_Id,:Product_Id)');
+                // $addToCard->bindParam("Qty",);
+                $addToCard->bindParam("Price", $productClicked['Price']);
+                $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+                $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
+                if ($addToCard->execute()) {
+                    header("location:http://localhost/server/marketplace/pages/showProducts.php");
+                }
+            }
         } else {
+            $getProductId = $database->prepare('SELECT Product_Id,Price FROM Products WHERE Product_Id = :Product_Id');
+            $getProductId->bindParam("Product_Id", $_GET['id']);
+            $getProductId->execute();
+            $productClicked = $getProductId->fetch();
 
-            $discountPercent = $_GET['discountValue'];
+            $getCustomerId = $database->prepare('SELECT Customer_Id FROM users WHERE Username = :Username');
+            $getCustomerId->bindParam("Username", $_GET['username']);
+            $getCustomerId->execute();
+            $idOfCustomer = $getCustomerId->fetch();
 
-            $newPrice = $productClicked['Price'] * (1 - ($discountPercent / 100));
+            $checkProduct = $database->prepare("SELECT * FROM orders WHERE Product_Id=:Product_Id AND Customer_Id=:Customer_Id");
+            $checkProduct->bindParam("Product_Id", $productClicked['Product_Id']);
+            $checkProduct->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+            $checkProduct->execute();
+            $isHere = $checkProduct->fetch();
 
-            $newPrice = round($newPrice, 2);
+            if ($isHere) {
+                echo '<div class="container mt-4">
+                <!-- Faild alert -->
+                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                  <strong>Faild!</strong> The product is  already in your cart.
+                    <div class="row my-1"><a href="http://localhost/server/marketplace/pages/cart.php" class="link-dark"><span class="btn bg-warning rounded-pill mb-1">Check my Cart</span></a>
+                </div>
+              </div>';
+            } else {
+
+                $discountPercent = $_GET['discountValue'];
+
+                $newPrice = $productClicked['Price'] * (1 - ($discountPercent / 100));
+
+                $newPrice = round($newPrice, 2);
 
 
-            $addToCard = $database->prepare('INSERT INTO orders(Price,Customer_Id,Product_Id) VALUES(:Price,:Customer_Id,:Product_Id)');
-            // $addToCard->bindParam("Qty",);
-            $addToCard->bindParam("Price", $newPrice);
-            $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
-            $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
-            if ($addToCard->execute()) {
-                header("location:http://localhost/server/marketplace/pages/showProducts.php");
+                $addToCard = $database->prepare('INSERT INTO orders(Price,Customer_Id,Product_Id) VALUES(:Price,:Customer_Id,:Product_Id)');
+                // $addToCard->bindParam("Qty",);
+                $addToCard->bindParam("Price", $newPrice);
+                $addToCard->bindParam("Customer_Id", $idOfCustomer['Customer_Id']);
+                $addToCard->bindParam("Product_Id", $productClicked['Product_Id']);
+                if ($addToCard->execute()) {
+                    header("location:http://localhost/server/marketplace/pages/showProducts.php");
+                }
             }
         }
     }

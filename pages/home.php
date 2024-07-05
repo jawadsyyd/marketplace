@@ -155,7 +155,7 @@ include('./nav.php');
             <?php
             $getProducts = $database->prepare("
     SELECT * FROM products ORDER BY Product_Id ASC
-    LIMIT 8
+    LIMIT 4
 ");
             $getProducts->execute();
             $products = $getProducts->fetchAll();
@@ -204,14 +204,18 @@ include('./nav.php');
                 $getCustomerDetails->execute();
                 $customerDetails = $getCustomerDetails->fetchAll();
                 foreach ($customerDetails as $cDetails) {
-                    if($isFirstItem){
+                    $profilePicture = $cDetails['profilePicture'];
+                    if (empty($profilePicture)) {
+                        $profilePicture = 'avatar.png';
+                    }
+                    if ($isFirstItem) {
                         echo '
                 <div class="carousel-item active">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="feedback-card">
                             <div class="user-profile">
-                                <img src="https://placehold.co/50" alt="User Profile Image">
+                                <img src="../users_images/' . $profilePicture . '" alt="User Profile Image">
                                 <span class="username">' . $cDetails['Username'] . '</span>
                             </div>
                             <div class="feedback-date">' . $details['Date'] . '</div>
@@ -224,7 +228,7 @@ include('./nav.php');
                 </div>
             </div>
                 ';
-                $isFirstItem = false;
+                        $isFirstItem = false;
                     } else {
                         echo '
                 <div class="carousel-item">
@@ -232,7 +236,7 @@ include('./nav.php');
                     <div class="col-md-8 offset-md-2">
                         <div class="feedback-card">
                             <div class="user-profile">
-                                <img src="https://placehold.co/50" alt="User Profile Image">
+                                <img src="../users_images/' . $profilePicture . '" alt="User Profile Image">
                                 <span class="username">' . $cDetails['Username'] . '</span>
                             </div>
                             <div class="feedback-date">' . $details['Date'] . '</div>
@@ -260,17 +264,17 @@ include('./nav.php');
             </button>
         </div>
     </div>
-        <!--  -->
-        <?php
-        include("./footer.php");
-        ?>
-        <script>
-            function ShowMore() {
-                window.location.href = 'http://localhost/server/marketplace/pages/showProducts.php';
-            }
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    <!--  -->
+    <?php
+    include("./footer.php");
+    ?>
+    <script>
+        function ShowMore() {
+            window.location.href = 'http://localhost/server/marketplace/pages/showProducts.php';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
